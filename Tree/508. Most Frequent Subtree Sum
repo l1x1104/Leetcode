@@ -1,0 +1,45 @@
+int[]有两种情况：
+              1. 有且仅有一个most frequent数
+              2. >= 2
+那么问题来了：如何从pool当中选出频数比别的key要多且最多 或者 一样多的sum？
+
+Think Path:
+  1. Get sum for each subtrees, adding sum and count to a map.
+  2. Find the max count
+  3. If the count equals max count, add that sum to result.
+  
+  
+  class Solution {
+    public int maxCount = Integer.MIN_VALUE;
+    
+    public int[] findFrequentTreeSum(TreeNode root) {
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        if(root == null) {
+            return new int[0];
+        }
+        int sum = helper(root, mp);
+        List<Integer> l = new ArrayList<>();
+        for(Integer i: mp.keySet()) {
+            if(mp.get(i) == maxCount) l.add(i);
+        }
+        int[] res = new int[l.size()];
+        for(int i = 0; i < l.size(); i++) {
+            res[i] = l.get(i);  
+        }
+        
+        return res;
+    }
+    public int helper(TreeNode root, HashMap<Integer, Integer> mp) {
+        if(root == null) {
+            return 0;
+        }
+        int left = helper(root.left, mp);  
+        int right = helper(root.right, mp);
+        int sum = left + right + root.val;
+        int count = mp.getOrDefault(sum, 0);
+        mp.put(sum, count + 1);
+        maxCount = Math.max(maxCount, mp.get(sum));
+        return sum;
+        
+    }
+}
