@@ -1,0 +1,31 @@
+public List<TreeNode> generateTrees(int n) {
+    List<TreeNode> res = new ArrayList<>();
+    if(n == 0) {
+        return res;
+    }
+    res = helper(1, n);
+    return res;
+}
+public List<TreeNode> helper(int start, int end) {
+    List<TreeNode> res = new ArrayList<>();
+    if(start > end) {
+        res.add(null);
+        return res;
+    }else if(start == end) {
+        res.add(new TreeNode(start));
+        return res;
+    }
+    for(int k = start; k <= end; k++) {
+        List<TreeNode> leftSub = helper(start, k - 1);
+        List<TreeNode> rightSub = helper(k + 1, end);
+        for (TreeNode i : leftSub) {
+            for (TreeNode j : rightSub) {
+            TreeNode root = new TreeNode(k);
+                root.left = i;
+                root.right = j;
+                res.add(root);
+            }
+        }
+    }
+    return res;
+}
