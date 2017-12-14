@@ -1,0 +1,19 @@
+   public boolean isValidBST(TreeNode root) {
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode curr = root;
+        TreeNode prev = null;
+        
+        while(!s.isEmpty() || curr != null) {
+            while(curr != null) {
+                s.push(curr);
+                curr = curr.left;
+            }
+            curr = s.pop();
+            if(prev != null && prev.val >= curr.val) {
+                return false;
+            }
+            prev = curr;
+            curr = curr.right;
+        }
+        return true;
+    }
