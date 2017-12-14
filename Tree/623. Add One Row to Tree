@@ -1,0 +1,41 @@
+1. BFS: find the (n - 1) row and add new children to each of them.
+public TreeNode addOneRow(TreeNode root, int v, int d) {
+        if(d == 1) {
+            TreeNode newRoot = new TreeNode(v);
+            newRoot.left = root;
+            return newRoot;
+        }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        // can't use while, change it to for loop
+        for(int i = 0; i < d - 2; i++) {
+            int size = q.size();
+            for(int j = 0; j < size; j++) {
+                TreeNode tmp = q.poll();
+                if (tmp.left != null) q.offer(tmp.left);
+                if (tmp.right != null) q.offer(tmp.right);
+            }
+        }
+        while(!q.isEmpty()) {
+            TreeNode node = q.poll();
+            TreeNode left = null;
+            TreeNode right = null;
+    
+            if(node.left != null) {
+                left =  node.left;
+            }
+            if(node.right != null) {
+                right = node.right;
+            }
+            
+            TreeNode newLeft = new TreeNode(v);
+            node.left = newLeft;
+            newLeft.left = left;
+            
+            TreeNode newRight = new TreeNode(v);
+            node.right = newRight;
+            newRight.right = right;
+        }
+        return root;
+    }
+最后while循环其实能写得更简洁好看些
