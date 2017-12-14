@@ -1,0 +1,29 @@
+方法： 用102 Level Order Traversal的方法
+public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if(root == null) {
+            return res;
+        }
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()) {
+            int size = q.size();
+            System.out.println(" The size is" + size);
+            for(int i = 0; i < size; i ++) {
+                TreeNode tmp = q.poll();
+                if(i == (size - 1)) {
+                    res.add(tmp.val);
+                }
+                if(tmp.left != null) {
+                    q.offer(tmp.left);
+                }
+                if(tmp.right != null) {
+                    q.offer(tmp.right);
+                }
+            }
+            
+        }
+        
+        return res;   
+    }
