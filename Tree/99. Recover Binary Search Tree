@@ -1,0 +1,30 @@
+public void recoverTree(TreeNode root) {
+    if(root == null) {
+        return;
+    }
+    Stack<TreeNode> s = new Stack<>();
+    TreeNode first = null;
+    TreeNode second = null;
+    
+    TreeNode prev = null;
+    TreeNode curr = root;
+    
+    while(!s.isEmpty() || curr != null) {
+        while(curr != null) {
+            s.push(curr);
+            curr = curr.left;
+        }
+        curr = s.pop();
+        if(prev != null && prev.val >= curr.val) {
+            if(first == null) {
+                first = prev;
+            }
+            second = curr;
+        }
+        prev = curr;
+        curr = curr.right;
+    }
+    int tmp = first.val;
+    first.val = second.val;
+    second.val = tmp;
+}
