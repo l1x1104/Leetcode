@@ -2,13 +2,9 @@ Thinking Path:
 If we mark the tree nodes from left to right, top to bottom with increasing integers, starting with 1, then let's call this number "Index". There are some properties of it:
 (1) The largest index is the answer we want. It equals to the number of nodes.
 (2) Since it's complete binary tree, for a node with index x, the left child, if exist, has index 2 * x. The right child, if exist, has index 2 * x + 1.
-
 So in this solution, I'm trying to "walk" to the node with largest index starting from the root, which has index 1. Let's denote the height of left child tree is lH, the height of right child tree is rH:
-
-(1) if lH == rH, meaning left child tree is a full tree, the last node must be in the right child tree. So we move to the right child node.
-
-(2) Otherwise, the last node must be in the left child tree, so we move to the left.
-
+    (1) if lH == rH, meaning left child tree is a full tree, the last node must be in the right child tree. So we move to the right child node.
+    (2) Otherwise, the last node must be in the left child tree, so we move to the left.
 So by "tracing" the node with largest index, we can find the answer. 
 
 Time complexity:
@@ -16,17 +12,28 @@ Because the total number of steps equals to the height of the tree h, at each st
 
 参考答案：
 
-public class Solution {
+class Solution {
     public int countNodes(TreeNode root) {
-        return root == null ? 0 : findLastIndex(root, 1);
+        if(root == null) {
+            return 0;
+        }
+        return helper(root, 1);
     }
-    private int lHeight(TreeNode node, int count) {
-        return node == null ? count - 1 : lHeight(node.left, count + 1);
+    public int helper(TreeNode root, int index) {
+        if(root.left == null && root.right == null) {
+            return index;
+        }
+        if(height(root.left, 1) == height(root.right, 1)) {
+            return helper(root.right, index * 2 + 1);
+        }else {
+            return helper(root.left, index * 2);
+        }
     }
-    private int findLastIndex(TreeNode node, int currIndex) {
-        if (node.left == null && node.right == null) return currIndex;
-        if (lHeight(node.left, 1) == lHeight(node.right, 1))
-            return findLastIndex(node.right, currIndex * 2 + 1);
-        else return findLastIndex(node.left, currIndex * 2);
+    public int height(TreeNode root, int count) {
+        if(root == null) {
+            return -1;
+        }
+        return 1 +  height(root.left, count);
     }
+    
 }
