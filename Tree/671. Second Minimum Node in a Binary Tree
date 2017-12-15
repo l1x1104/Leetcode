@@ -1,0 +1,25 @@
+题目暗示树从根到末节点逐渐增大
+
+HashSet
+   public int findSecondMinimumValue(TreeNode root) {
+        Set<Integer> res = new TreeSet<>();
+        helper(root, res);
+        Iterator<Integer> i = res.iterator();
+        int count = 0;
+        while (i.hasNext()) {
+                count++;
+                int ans = i.next();
+                if (count == 2) {
+                    return ans;
+                }
+            }
+        return -1;
+    }
+    public void helper(TreeNode root, Set<Integer> res) {
+        if(root == null) {
+            return;   
+        }
+        res.add(root.val);
+        helper(root.left, res);
+        helper(root.right, res);
+    }
