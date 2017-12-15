@@ -1,0 +1,60 @@
+这个代码give wrong answer and case is tooooo large.
+
+class Solution {
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if(root == null) {
+            return null;
+        }
+        TreeNode res;
+        return res = helper(root, key);
+    }
+    
+    public TreeNode helper(TreeNode root, int key) {
+        if(root == null || (root.left == null && root.right == null && root.val == key)) return null;
+        TreeNode leftSub = helper(root.left, key);
+        TreeNode rightSub = helper(root.right, key);
+        if(root.val == key) {
+            if(rightSub != null) {
+                rightSub.left = leftSub;
+                return rightSub;
+            }else {
+                leftSub.right = rightSub;
+                return leftSub;
+            }
+        }
+        root.left = leftSub;
+        root.right = rightSub;
+        return root;
+    }
+}
+
+Because.. I didn't find the MINIMUM!!! value in the right Subtree.
+Steps:
+Recursively find the node that has the same value as the key, while setting the left/right nodes equal to the returned subtree
+Once the node is found, have to handle the below 4 cases
+node doesn't have left or right - return null
+node only has left subtree- return the left subtree
+node only has right subtree- return the right subtree
+node has both left and right - find the minimum value in the right subtree, set that value to the currently found node, then recursively delete the minimum value in the right subtree
+
+参考答案：
+
+public TreeNode deleteNode(TreeNode root, int key) {
+    if(root == null) return null;
+    if(key > root.val) {
+        root.right = deleteNode(root.right, key);
+    }else if(key < root.val) {
+        root.left = deleteNode(root.left, key);
+    }else {
+        if(root.left == null) return root.right;
+        else if(root.right == null) return root.left;
+        TreeNode min = findMin(root.right);
+        root.val = min.val;
+        root.right = deleteNode(root.right, min.val);
+    }
+    return root;
+}
+public TreeNode findMin(TreeNode root) {
+    while(root.left != null) root = root.left;
+    return root;
+} 
