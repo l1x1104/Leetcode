@@ -1,0 +1,71 @@
+拿题目的例子来说，    1
+                2     3
+             4     2     4
+                 4
+            duplicate subtrees 分别是：   2   和   4   
+                                      4
+两个2、4分别在不同层，不管是dfs还是bfs都不能跨过一个或多个层进行沟通，因此需要一个“桥梁”沟通不同层，以及，这个桥梁必须储存每一层结果，即以该层每一
+个节点所构成的所有子树。
+
+discussion里用了hashmap，同时储存每一个子树及字符串出现次数。返回list里添加过一次的string不必要重复添加。
+
+public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+    List<TreeNode> res = new ArrayList<>();
+    HashMap<String, Integer> mp = new HashMap<>();
+    String s = helper(root, mp, res);
+    return res;
+}
+public String helper(TreeNode root, HashMap<String, Integer> mp, List<TreeNode> res) {
+    if(root == null) return "";
+    String l = helper(root.left, mp, res);
+    String r = helper(root.right, mp, res);
+    String s = l + Integer.toString(root.val) + r;
+    if(!mp.containsKey(s)) {
+        mp.put(s, 1);
+    }else {
+        mp.put(s, mp.get(s) + 1);
+        if(mp.get(s) == 2) res.add(root);
+    }
+    return s;
+}
+以上代码有一个非常奇怪的corner case..
+Input: [0,0,0,0,null,null,0,null,null,null,0]
+Output: [[0],[0,null,0]]
+Expected: [[0]]
+
+l0                0
+l1             0     0
+l2          0           0
+l3                         0
+错误点在于line22组成string这句话，l1~l2和l2~l3这两个子树不一样，如果采用左中右构建，恰好这两种情况构成一样的string。因此必须中左右或者左右中。
+
+且，line19 return不可以空“”，否则左右区分不开，答案错。
+
+参考代码：
+class Solution {
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        List<TreeNode> res = new ArrayList<>();
+        HashMap<String, Integer> mp = new HashMap<>();
+        String rootString = helper(res, root, mp);
+        return res;
+    }
+    public String helper(List<TreeNode> res, TreeNode root, HashMap<String, Integer> mp) {
+        if(root == null) return "#";
+        String l = helper(res, root.left, mp);
+        String r = helper(res, root.right, mp);
+        String s = Integer.toString(root.val) + l + r;
+        if(!mp.containsKey(s)) {
+            mp.put(s, 1);
+        }else {
+            mp.put(s, mp.get(s) + 1);
+            if(mp.get(s) == 2) res.add(root);
+        }
+    return s;
+    }
+}
+                   
+
+
+
+
+                                      
