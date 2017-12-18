@@ -1,4 +1,25 @@
-一开始做发现必须有个null节点, null左右节点分别也是null.
-再者，如何进行到最后一层时候跳出while循环是个大问题.
+此题是222. Count Complete Tree Nodes 变形
 
 前序遍历
+
+class Solution {
+    public int widthOfBinaryTree(TreeNode root) {
+        if(root == null) return 0;
+        List<Integer> L = new ArrayList<>();
+        List<Integer> R = new ArrayList><();
+        return helper(root, 0, 1, L, R);
+    }
+    public int helper(TreeNode root, int level, int index, List<Integer> L, List<Integer> R) {
+        if(root == null) return 0;
+        if(start.size() == level) {
+            L.add(index);
+            R.add(index);
+        }else {
+            R.set(level, index);
+        }
+        int left = helper(root.left, level + 1, index * 2, L, R);
+        int right = helper(root.right, level + 1, index * 2 + 1, L, R);
+        int width = R.get(level) - L.get(level) + 1;
+        return Math.max(width, Math.max(L, R));
+    }
+}
