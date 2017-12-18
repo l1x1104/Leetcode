@@ -6,12 +6,12 @@ class Solution {
     public int widthOfBinaryTree(TreeNode root) {
         if(root == null) return 0;
         List<Integer> L = new ArrayList<>();
-        List<Integer> R = new ArrayList><();
+        List<Integer> R = new ArrayList<>();
         return helper(root, 0, 1, L, R);
     }
     public int helper(TreeNode root, int level, int index, List<Integer> L, List<Integer> R) {
         if(root == null) return 0;
-        if(start.size() == level) {
+        if(L.size() == level) {
             L.add(index);
             R.add(index);
         }else {
@@ -19,7 +19,7 @@ class Solution {
         }
         int left = helper(root.left, level + 1, index * 2, L, R);
         int right = helper(root.right, level + 1, index * 2 + 1, L, R);
-        int width = R.get(level) - L.get(level) + 1;
-        return Math.max(width, Math.max(L, R));
+        int w = R.get(level) - L.get(level) + 1;
+        return Math.max(w, Math.max(left, right));
     }
 }
