@@ -1,0 +1,21 @@
+思路： 最大值无非两种情况，第一，根节点值加上左节点(总和)或者右节点， 第二，左中右三者之和。注意，第二种情况不能返回，因为！      3
+      这样                                                                                                 3
+      不能                                                                                              3     3
+      路径和为2，那么，我们提取出来，单独计算，故用到全局变量                                                                                                  
+
+class Solution {
+    private int max = 0;
+    
+    public int longestUnivaluePath(TreeNode root) {
+        if(root == null) return 0;
+        return Math.max(max, helper(root, root.val));
+    }
+    public int helper(TreeNode root, int val) {
+        if(root == null) return 0;
+        int left = helper(root.left, root.val);
+        int right = helper(root.right, root.val);
+        max = Math.max(max, left + right);
+        if(val != root.val) return 0;
+        return Math.max(left, right) + 1;
+    }
+}
