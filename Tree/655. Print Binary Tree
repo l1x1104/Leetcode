@@ -1,0 +1,91 @@
+分析： 难点在于每一层真正的数字之间/前有几个""？即，每一层从第几个树(index是多少)开始print？
+
+#1 Level Order Traversal with Queue
+import java.util.AbstractMap;
+class Solution {
+    public List<List<String>> printTree(TreeNode root) {
+    
+        List<List<String>> res = new ArrayList<>();
+        if(root == null) {
+            return res;
+        }
+        
+        int row = getHeight(root);
+        int col = (int)Math.pow(2, row) - 1;
+        for (int i = 0; i < row; i++) {
+            List<String> tmp = new ArrayList<>();
+            for (int j = 0; j < col; j++) {
+                tmp.add("");
+            }
+            res.add(tmp);
+        }
+        
+        int level = 0;
+        int half = (col + 1) / 2;
+        Queue<Map.Entry<TreeNode, Integer>> q = new LinkedList<Map.Entry<TreeNode, Integer>>();
+        q.offer(new AbstractMap.SimpleEntry(root, col / 2));     
+        while(!q.isEmpty()) {
+            
+            half = half / 2;
+            for(int i = 0, n = q.size(); i < n; i++) {
+                TreeNode node = q.peek().getKey();
+                int index = q.poll().getValue();
+                //System.out.println(" index = " + index + " i = " + i + "half = " + half);
+                List<String> tmp = res.get(level);
+                tmp.set(index, Integer.toString(node.val));
+                if(node.left != null) q.offer(new AbstractMap.SimpleEntry(node.left,  index - half));
+                if(node.right != null) q.offer(new AbstractMap.SimpleEntry(node.right, index + half));
+            } 
+            level ++;
+        }
+        
+        return res;
+    }
+    
+    private int getHeight(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+    }
+    
+}
+
+#2 Recursive Solution
+class Solution {
+    public List<List<String>> printTree(TreeNode root) {
+        List<List<String>> res = new ArrayList<>();
+        if(root == null) return res;
+        int row = getHeight(root);
+        int col = (int)Math.pow(2, row) - 1;
+        for (int i = 0; i < row; i++) {
+            List<String> tmp = new ArrayList<>();
+            for (int j = 0; j < col; j++) {
+                tmp.add("");
+            }
+            res.add(tmp);
+        }
+        helper(root, res, 0, (col + 1) / 4, col / 2);
+        return res;
+    }
+    public void helper(TreeNode root, List<List<String>> res, int level, int half, int index) {
+        if(root == null) return;
+        
+        List<String> tmpList = res.get(level);
+        tmpList.set(index, Integer.toString(root.val));
+        helper(root.left, res, level + 1, half / 2, index - half);
+        helper(root.right, res, level + 1, half / 2, index + half);
+        
+    }
+    private int getHeight(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+    }
+} 
+
+
+
+
+
