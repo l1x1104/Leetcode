@@ -65,3 +65,24 @@ class Solution {
         tmpList.remove(tmpList.size() - 1);
     }
 }
+
+
+更新：
+
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> tmpList = new ArrayList<>();
+        helper(root, sum, 0, tmpList, res);
+        return res;
+    }
+    public void helper(TreeNode root, int target, int sum, List<Integer> tmpList, List<List<Integer>> res) {
+        if(root == null) return;
+        tmpList.add(root.val);
+        if((sum + root.val == target) && root.left == null && root.right == null) res.add(new ArrayList<>(tmpList)); 
+        helper(root.left, target, sum + root.val, tmpList, res);
+        helper(root.right, target, sum + root.val, tmpList, res);
+        tmpList.remove(tmpList.size() - 1);
+    }
+}
+整洁！elegant！
