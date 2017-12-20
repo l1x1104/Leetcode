@@ -1,0 +1,28 @@
+class Solution {
+    private boolean flag = true;
+    private TreeNode node;
+    public TreeNode upsideDownBinaryTree(TreeNode root) {
+        if(root == null || root.left == null && root.right == null) return root;
+        TreeNode res = helper(root);
+        return node;
+    }
+    
+    public TreeNode helper(TreeNode root) {
+        if(root == null) return null;
+        if(root.left == null && root.right == null) return root;
+        TreeNode left = helper(root.left);
+        TreeNode right = helper(root.right);
+        //TreeNode node = new TreeNode(left.val);
+        left.left = right;
+        left.right = root;
+        root.left = null;
+        root.right = null;
+        //if(root.left != null)   root.left = null;
+        //root.right = null;
+        if(flag) {
+            node = left;
+            flag = false;
+        }
+        return root;
+    }
+}
