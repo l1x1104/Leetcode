@@ -1,0 +1,17 @@
+Thinking Path:
+              1. Using a stack to keep track of left subtree.
+              2. And use the largest one as the root of subtree, which means that later on all elements after this root can't 
+                 smaller than it. Basically because once you arrive on the right side, you can't find a way going back to its
+                 left. For example, root -> left -> right -> left ? No! It's a preorder traversal.
+
+public boolean verifyPreorder(int[] preorder) {
+    Stack<Integer> s = new Stack<>();
+    int root = Integer.MIN_VALUE;
+    for(Integer i: preorder) {
+        if(i < root) return false;
+        while(!s.isEmpty() && s.peek() < i) root = s.pop();
+        s.push(i);
+    }
+    return true;
+}
+
