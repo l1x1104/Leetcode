@@ -1,0 +1,21 @@
+        1. 用数组代替全局变量
+        2. 从根起一定到branch的叶子节点都一样才算subtree，中间不能断。
+ 
+#1 Recursive Solution 
+public int countUnivalSubtrees(TreeNode root) {
+    int[] count = new int[1];
+    helper(root, count);
+    return count[0];
+}
+private boolean helper(TreeNode root, int[] count) {
+    if(root == null) return true;
+    boolean left = helper(root.left, count);
+    boolean right = helper(root.right, count);
+    if(left && right) {
+        if(root.left != null && root.left.val != root.val) return false;
+        if(root.left != null && root.left.val != root.val) return false;
+        count[0] += 1;
+        return true;
+    }
+    return false;
+}
