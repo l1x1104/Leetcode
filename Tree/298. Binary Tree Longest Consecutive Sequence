@@ -1,0 +1,24 @@
+Thinking Path: 
+              intuitive depth-first search, send current node value to next level and compare it with the next level node.
+#1
+class Solution {
+    private int max = Integer.MIN_VALUE;
+    public int longestConsecutive(TreeNode root) {
+        if(root == null) return 0;
+        helper(root, 0, root.val);
+        return max;
+    }
+    public void helper(TreeNode root, int sum, int target) {
+        if(root == null) return ;
+        if(root.val == target) sum ++;
+        else sum = 1;
+        max = Math.max(max, sum);
+        helper(root.left, sum, root.val + 1);
+        helper(root.right, sum, root.val + 1);
+    }
+}
+#2
+分析： 有两个元素需要在层与层之间传递： root值(即target值)和当前branch最大路径之和。如果由下至上传递，借助return只能返回一个数，故可能还需要借助一
+      个全局变量。
+      全局变量这个方案不行，比如，左右两棵子树一样且升序，无法做到sum不重复。每一层，对左右子树，要使用属于他们自己的sum。
+    
