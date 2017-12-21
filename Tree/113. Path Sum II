@@ -68,7 +68,7 @@ class Solution {
 
 
 更新：
-
+// preorder traversal
 class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> res = new ArrayList<>();
@@ -86,3 +86,21 @@ class Solution {
     }
 }
 整洁！elegant！
+
+Think more: in the example,                     5
+                                             4     8
+                                           11    13  4
+                                         7  2       5  1
+            能用return int的方法吗？return什么的值？
+            比如，对node(11)来说， return root.val本身还是两个左右子树之和？return root.val本身肯定不行，比如，到node(4)时候，需要将sum
+            和target值作比较，如果只return root.val(==11)，7和2的信息就lost了。那么，return 7 + 11 和 11 + 2呢？有什么数据结构能同时存储
+            两个以上integer值？(注意到随着level往上走，branches增多，不同sum值也增多，比如到node(8)时候不同sum的值就有3个了)且这种数据结构能
+            扩容？首先想到是链表linkedlist。
+            接下去，所以每一层往上,return一个链表，这个链表储存了改层以下到节点不同路径的和， ok? No!比如走到node(5)，发现路径5->4->11->2sum
+            等于target，然而，题目要求返回list<Integer>，每一层返回只有一个sum值， 组成sum的每一个node这个信息丢失了，所以对于每一层返回的不仅仅
+            是不同和，还有组成这些和的元素组合。
+            再往下细想，how can you know you reach to the very top which is the root? 比如，如果还没到root，sum == target，并不能添加
+            到result list里。root不像叶子节点可以用node.left == null && node.right == null表示。
+            综上，postorder return int方法是不行。
+            
+           
