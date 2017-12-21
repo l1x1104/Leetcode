@@ -1,4 +1,5 @@
 #1 Recursive Solution
+Nice use of target, but also can remove the instance variable.
 class Solution {
     public int longestConsecutive(TreeNode root) {
         if(root == null) return 0;
@@ -16,4 +17,22 @@ class Solution {
     }
 }
 
-#2 Iterative Solution
+#2
+class Solution {
+    public int longestConsecutive(TreeNode root) {
+        if(root == null) return 0;
+        return helper(root, root.val + 1, 1, 1);
+    }
+    public int helper(TreeNode root, int target, int sum, int max) {
+        if(root == null) return max;
+        if(root.val == target) {
+            sum ++;
+            max = Math.max(max, sum);
+        }else {
+            sum = 1;
+        }
+        int left = helper(root.left, root.val + 1, sum, max);
+        int right = helper(root.right, root.val + 1, sum, max);
+        return Math.max(left, right);
+    }
+}
