@@ -1,46 +1,20 @@
 想法：一个节点不能访问两次，从而避免走回头路？
 
 后序递归 
-
-    private int max = Integer.MIN_VALUE;
-    
-    public int maxPathSum(TreeNode root) {
-        int maxSub = helper(root); 
-        return Math.max(maxSub, max);
-    }
-    
-    public int helper(TreeNode root) {
-        if(root == null) {
-            return 0;
-        }
-        if(root.left == null && root.right == null) {
-            max = Math.max(max, root.val);
-            return root.val;
-        }
-        int left = helper(root.left);
-        int right = helper(root.right);
-        System.out.print(left + " " + right + " " + root.val);
-        max = Math.max(left + right + root.val, max);
-        max = Math.max(root.val, max);
-        left = Math.max(left, left + root.val);
-        right = Math.max(right, right + root.val);
-        System.out.println(" " + max);
-        return Math.max(left, right);
-    }
-    
-参考答案：
 class Solution {
-    private int max = Integer.MIN_VALUE;
-    public int helper(TreeNode root) {
-        if(root == null) return 0;
-        int l = Math.max(0, helper(root.left));
-        int r = Math.max(0, helper(root.right));
-        max = Math.max(max, l + r + root.val);
-        return Math.max(l, r) + root.val;
-    }
-    
     public int maxPathSum(TreeNode root) {
-        helper(root);
-        return max;
-    }   
+        if(root == null) return 0;
+        else if(root.left == null && root.right == null) return root.val;
+        int[] max = new int[1];
+        int ans = helper(root, max);
+        return max[0];
+    }
+    public int helper(TreeNode root, int[] max) {
+        if(root == null) return 0;
+        int left = Math.max(0, helper(root.left, max));
+        int right = Math.max(0, helper(root.right, max));
+        max[0] = Math.max(max[0], left + right + root.val);
+        return root.val + Math.max(left, right);
+        
+    }
 }
