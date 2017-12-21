@@ -69,6 +69,7 @@ class Solution {
 
 更新：
 // preorder traversal
+如果postorder做把line83换到line85之后即可。
 class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> res = new ArrayList<>();
