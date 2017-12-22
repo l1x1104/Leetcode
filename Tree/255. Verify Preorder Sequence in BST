@@ -2,8 +2,10 @@ Thinking Path:
               1. Using a stack to keep track of left subtree.
               2. And use the largest one as the root of subtree, which means that later on all elements after this root can't 
                  smaller than it. Basically because once you arrive on the right side, you can't find a way going back to its
-                 left. For example, root -> left -> right -> left ? No! It's a preorder traversal.
+                 left. For example, root -> left -> right -> left ? How ? No! Remember it's a preorder traversal.
 
+#1 Using stack to simulate traversal
+Space Complexity: O(n)
 public boolean verifyPreorder(int[] preorder) {
     Stack<Integer> s = new Stack<>();
     int root = Integer.MIN_VALUE;
@@ -14,4 +16,13 @@ public boolean verifyPreorder(int[] preorder) {
     }
     return true;
 }
-
+Follow up: Could you do it using only constant space complexity?
+#2 public boolean verifyPreorder(int[] preorder) {
+    int root = Integer.MIN_VALUE, index = -1;
+    for(Integer i: preorder) {
+        if(i < root) return false;
+        while(index >= 0 && i > preorder[index]) root = preorder[index--];
+        preorder[++index] = i;
+    }
+    return true;
+}
