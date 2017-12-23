@@ -66,3 +66,65 @@
         }
         
 第五题、 105 Construct Binary Tree from Preorder and Inorder Traversal
+
+    画图，搞定。
+        public class Solution {
+            public TreeNode buildTree(int[] preorder, int[] inorder) {
+                if(preorder == null|| inorder == null|| preorder.length != inorder.length) return null;
+                TreeNode head = rebuildHelper(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+                return head;
+            }
+    
+            public TreeNode rebuildHelper(int[] pre, int prestart, int preend, int[] in, int instart, int inend) {
+                if(instart > inend || prestart > preend) return null;
+                else if( prestart == preend) return new TreeNode(pre[prestart]);
+                int data = pre[prestart];
+                int index = findIndex(in, instart, inend, data);
+                if(index == -1) return null;
+                TreeNode root = new TreeNode(data);
+                int len = index - instart;
+                root.left = rebuildHelper(pre, prestart + 1, prestart + len, in, instart, index - 1);
+                root.right = rebuildHelper(pre, prestart + 1 + len, preend, in, index + 1, inend);
+                return root;
+            }
+    
+            public int findIndex(int[] nums, int start, int end, int target) {
+                for (int t = start; t < end + 1; t ++) {
+                    if (nums[t] == target) {
+                        return t;
+                    }
+                }
+                return -1;
+            }
+    
+        }
+
+        inorder 和 postorder
+        class Solution {
+            public TreeNode buildTree(int[] inorder, int[] postorder) {
+                if(postorder == null|| inorder == null|| postorder.length != inorder.length) return null;
+                TreeNode head = rebuildHelper(postorder, 0, postorder.length - 1, inorder, 0, inorder.length - 1);
+                return head;
+            }
+            public TreeNode rebuildHelper(int[] post, int poststart, int postend, int[] in, int instart, int inend) {
+                if(instart > inend || poststart > postend) return null;
+                else if( poststart == postend) return new TreeNode(post[poststart]);
+                int data = post[postend];
+                int index = findIndex(in, instart, inend, data);
+                if(index == -1) return null;
+                TreeNode root = new TreeNode(data);
+                int len = inend - index;
+                root.left = rebuildHelper(post, poststart, postend - len - 1, in, instart, index - 1);
+                root.right = rebuildHelper(post, postend - len, postend - 1, in, index + 1, inend);
+                return root;
+            }
+    
+            public int findIndex(int[] nums, int start, int end, int target) {
+                for (int t = start; t < end + 1; t ++) {
+                if (nums[t] == target) {
+                    return t;
+                }
+            }
+            return -1;
+            }
+        }
