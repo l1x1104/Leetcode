@@ -16,7 +16,7 @@ public boolean verifyPreorder(int[] preorder) {
     }
     return true;
 }
-Follow up: Could you do it using only constant space complexity?
+Follow up: Could you do it using only constant space complexity? 使空间复杂度为常量
 #2 public boolean verifyPreorder(int[] preorder) {
     int root = Integer.MIN_VALUE, index = -1;
     for(Integer i: preorder) {
