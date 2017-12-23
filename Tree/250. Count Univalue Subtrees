@@ -1,5 +1,6 @@
         1. 用数组代替全局变量
         2. 从根起一定到branch的叶子节点都一样才算subtree，中间不能断。
+        3. 和sameTree recursive解法一样的。
  
 #1 Recursive Solution 
 public int countUnivalSubtrees(TreeNode root) {
