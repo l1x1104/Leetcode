@@ -1,4 +1,9 @@
-Question:     If the tree looks like this:                                      
+
+Successor
+一个节点的successor两种情况： 父节点或者右子树里最小的节点                 父
+                                                                 左   右
+                                                                    左  右
+                                                                  左(min) 右
 
 #1 Iterative Solution
   public TreeNode successor(TreeNode root, TreeNode p) {
@@ -15,3 +20,13 @@ Question:     If the tree looks like this:
       return next;
   }
   
+Predecessor
+  public TreeNode predecessor(TreeNode root, TreeNode p) {
+      if(root == null) return null;
+      if(p.val <= root.val) return predecessor(root.left, p);
+      else {
+          TreeNode right = predecessor(root.right, p);
+          if(right == null) return right;
+          else return right;
+      }
+  }
