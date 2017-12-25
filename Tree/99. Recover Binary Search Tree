@@ -46,8 +46,7 @@ public void recoverTree(TreeNode root) {
 #2 Morris Threading Traversal
 class Solution {
     public void recoverTree(TreeNode root) {
-	    TreeNode prev = null, first = null, second = null;
-        //TreeNode r = null;
+	TreeNode prev = null, first = null, second = null;
         TreeNode curr = root;
         while(curr != null) {
             if(curr.left == null) {
@@ -75,10 +74,9 @@ class Solution {
                 }
             }
         }
-        if(first!= null && second != null) {
-            int tmp = first.val;
-            first.val = second.val;
-            second.val = tmp;
+        int tmp = first.val;
+        first.val = second.val;
+        second.val = tmp;
         }
     }
 }
