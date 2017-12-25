@@ -75,14 +75,12 @@ class Solution {
             if(curr.left == null) {
                 res.add(curr.val);
                 curr = curr.right;
-            }
-            else {
+            }else {
                 prev = curr.left;
                 while(prev.right != null && prev.right != curr) prev = prev.right;
                 if(prev.right == null) {
                     prev.right = curr;
                     curr = curr.left;
-                    
                 }else {
                     res.add(curr.val);
                     curr = curr.right;
