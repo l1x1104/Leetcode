@@ -1,3 +1,17 @@
+/*
+ Date:       Dec 22, 2017
+ Update:     Dec 22, 2017
+ Problem:    Recover Binary Search Tree
+ Difficulty: Hard
+ Notes:
+ Two elements of a binary search tree are swapped by mistake.
+ Recover the tree without changing its structure.
+ Note: A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?  
+ Solution: 1. Iterative way (stack).   Time: O(n), Space: O(n).
+           2. Recursive solution.      Time: O(n), Space: O(n).
+           3. Threaded tree (Morris).  Time: O(n), Space: O(1).
+ */
+#1 Iterative Solution
 public void recoverTree(TreeNode root) {
     if(root == null) {
         return;
@@ -27,4 +41,44 @@ public void recoverTree(TreeNode root) {
     int tmp = first.val;
     first.val = second.val;
     second.val = tmp;
+}
+
+#2 Morris Threading Traversal
+class Solution {
+    public void recoverTree(TreeNode root) {
+	    TreeNode prev = null, first = null, second = null;
+        //TreeNode r = null;
+        TreeNode curr = root;
+        while(curr != null) {
+            if(curr.left == null) {
+                if(prev != null && prev.val >= curr.val) {
+                    if(first == null) first = prev;
+                    second = curr;
+                }
+                prev = curr;
+                curr = curr.right;
+            }else {
+                TreeNode r = null;
+                r = curr.left;
+                while(r.right != null && r.right != curr) r = r.right;
+                if(r.right == null) {
+                    r.right = curr;
+                    curr = curr.left;
+                }else {
+                    if(prev != null && prev.val >= curr.val) {
+                        if(first == null) first = prev;
+                        second = curr;
+                    }
+                    prev = curr;
+                    curr = curr.right;
+                    r.right = null;
+                }
+            }
+        }
+        if(first!= null && second != null) {
+            int tmp = first.val;
+            first.val = second.val;
+            second.val = tmp;
+        }
+    }
 }
