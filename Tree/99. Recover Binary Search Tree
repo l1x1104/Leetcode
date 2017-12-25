@@ -6,6 +6,9 @@
  Notes:
  Two elements of a binary search tree are swapped by mistake.
  Recover the tree without changing its structure.
+ For example:           0         1
+ 		      /    -->   /
+		    1           0
  Note: A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?  
  Solution: 1. Iterative way (stack).   Time: O(n), Space: O(n).
            2. Recursive solution.      Time: O(n), Space: O(n).
@@ -57,7 +60,7 @@ class Solution {
                 prev = curr;
                 curr = curr.right;
             }else {
-                TreeNode r = null;
+                TreeNode r ;
                 r = curr.left;
                 while(r.right != null && r.right != curr) r = r.right;
                 if(r.right == null) {
