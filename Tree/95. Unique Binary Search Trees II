@@ -1,3 +1,30 @@
+/*
+ Date:       Dec 12, 2017
+ Update:     Dec 24, 2017
+ Problem:    Unique Binary Search Trees II
+ Difficulty: Medium
+ Notes:
+ Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1...n.
+ For example:
+ Given n = 3, your program should return all 5 unique BST's shown below.
+ 1         1          2        3        3
+  \         \        / \      /        /
+   2         3      1   3    1        2
+    \       /                 \      /
+     3     2                   2    1
+ Solution: 1. Recursive solution.      Time: O(n), Space: O(n).
+           3. DP.                      Time: O(n), Space: O(1).
+ */
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+#1 Simple Recursive
 public List<TreeNode> generateTrees(int n) {
     List<TreeNode> res = new ArrayList<>();
     if(n == 0) {
@@ -28,4 +55,35 @@ public List<TreeNode> helper(int start, int end) {
         }
     }
     return res;
+}
+#2 DP using HashMap
+public class Solution {
+    public List<TreeNode> generateTrees(int n) {
+        List<TreeNode> res = new LinkedList<>();
+        if(n <= 0) return res;
+        Map<String,List<TreeNode>> map = new HashMap<>();
+        return helper(1, n, map);
+    }
+    private List<TreeNode> helper(int start, int end, Map<String, List<TreeNode>> mp) {
+        if(mp.containsKey(start + "," + end)) return mp.get(start + "," + end);
+        List<TreeNode> res = new LinkedList<>();
+        if(start > end) {
+            res.add(null);
+            return res;
+        }
+        for(int i = start; i <= end; i++) {
+            List<TreeNode> leftSub = helper(start, i - 1, mp);
+            List<TreeNode> rightSub = helper(i + 1, end, mp);
+            for(TreeNode l: leftSub) {
+                for(TreeNode r: rightSub) {
+                    TreeNode root = new TreeNode(i);
+                    root.left = l;
+                    root.right = r;
+                    res.add(root);
+                }
+            }
+        }
+        mp.put(start + "," + end, res);
+        return res;
+    }
 }
