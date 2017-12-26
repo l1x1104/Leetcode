@@ -46,3 +46,51 @@ The leaves are node 4,7,8,9,10.
 The right boundary are node 1,3,6,10. (10 is the right-most node).
 So order them in anti-clockwise without duplicate nodes we have [1,2,4,7,8,9,10,6,3].
  */
+class Solution {
+    List<Integer> res;
+    public List<Integer> boundaryOfBinaryTree(TreeNode root) {
+        res = new ArrayList<>();
+        
+        if (root == null){return res;}
+        res.add(root.val);
+        leftB(root.left);
+        leaves(root.left);
+        leaves(root.right);
+        rightB(root.right);
+        return res;
+    }
+    
+    private void leftB(TreeNode node) {
+        if (node == null || (node.left == null && node.right == null)) return;
+        res.add(node.val);
+        if (node.left == null) {
+            leftB(node.right);
+        } else {
+            leftB(node.left);
+        }
+    }
+    
+    private void rightB(TreeNode node) {
+        if (node == null || (node.left == null && node.right == null)) return;
+        if (node.right == null) {
+            rightB(node.left);
+        } else {
+            rightB(node.right);
+        }
+        res.add(node.val);
+    }
+    
+    private void leaves(TreeNode node) {
+        if (node == null) return;
+        if (node.left == null && node.right == null) {
+            res.add(node.val);
+            return;
+        }
+        if (node.left != null) {
+            leaves(node.left);
+        }
+        if (node.right != null) {
+            leaves(node.right);
+        }
+    }
+}
