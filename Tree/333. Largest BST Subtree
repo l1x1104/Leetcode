@@ -1,1 +1,79 @@
-
+/*
+ Date:       Dec 25, 2017
+ Update:     Dec 25, 2017
+ Problem:    Largest BST Subtree
+ Difficulty: Medium
+ Notes:
+ Given a binary tree, find the largest subtree which is a Binary Search Tree (BST), where largest means subtree with largest 
+ number of nodes in it.
+ A subtree must include all of its descendants.
+ Here's an example:
+      10
+     / \
+    5  15
+   / \   \ 
+  1   8   7
+  The Largest BST Subtree in this case is the highlighted one. 
+  The return value is the subtree's size, which is 3.
+  Follow up:
+  Can you figure out ways to solve it with O(n) time complexity?
+  1. Use "Validate Binary Search Tree". Time Complexity: O(n^2) Space Complexity: O(n).
+ */
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ #1 Brute Force
+ class Solution {
+    public int largestBSTSubtree(TreeNode root) {
+        if(root == null) return 0;  
+        int[] count = new int[1];
+        dfs(root, count);
+        return count[0];
+    }
+    public void dfs(TreeNode root, int[] count) {
+        if(root == null) return;
+        int num = countNodes(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        if(num != -1) {
+            count[0] = Math.max(count[0], num);
+            return;
+        }
+        dfs(root.left, count);
+        dfs(root.right, count);
+    }
+    public int countNodes(TreeNode node, int min, int max) {
+        if(node == null) return 0;
+        if(node.val <= min || node.val >= max) return -1;
+        int left = countNodes(node.left, min, node.val);
+        if(left == -1) return -1;
+        int right = countNodes(node.right, node.val, max);
+        if(right == -1) return -1;
+        return 1 + left + right;
+    }
+  }
+  #2 
+  class Solution {
+    public int largestBSTSubtree(TreeNode root) {
+        if(root == null) return 0;  
+        int[] count = new int[1];
+        if(isValid(root, Integer.MIN_VALUE, Integer.MAX_VALUE)) return countNodes(root);
+        return Math.max(largestBSTSubtree(root.left), largestBSTSubtree(root.right));
+    }
+    private boolean isValid(TreeNode root, int min, int max) {
+        if(root == null) return true;
+        if(root.val <= min || root.val >= max) return false;
+        boolean left = isValid(root.left, min, root.val);
+        boolean right = isValid(root.right, root.val, max);
+        if(left && right) return true;
+        return false;
+    }
+    private int countNodes(TreeNode root) {
+        if(root == null) return 0;
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+  }
