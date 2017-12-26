@@ -20,7 +20,7 @@
  There will only be '(', ')', '-' and '0' ~ '9' in the input string.
  An empty tree is represented by "" instead of "()".
  */
-class Solution {
+ class Solution {
     public TreeNode str2tree(String s) {
         if(s == null || s.length == 0) return null;
         int firstLeft = s.indexOf('(');
@@ -43,4 +43,4 @@ class Solution {
         }
         return root;
     }
-}
+  }
