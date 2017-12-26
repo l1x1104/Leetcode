@@ -25,6 +25,7 @@
         if(s == null || s.length == 0) return null;
         int firstLeft = s.indexOf('(');
         if(firstLeft == -1) return new TreeNode(Integer.parseInt(s));
+        TreeNode root = new TreeNode(Integer.parseInt(s.substring(0, firstLeft)));
         int count = 0, i = firstLeft;
         while(i < s.length()) {
             if(s.charAt(i) == '(') {
