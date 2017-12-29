@@ -54,5 +54,5 @@ class Solution {
         return fast;
     }
 }
-根据原理，LINE20任意fast/slow = 0，return fast/slow都可以。
+根据原理，LINE49/54任意fast/slow = 0，return fast/slow都可以。
         
