@@ -15,10 +15,8 @@ class Solution {
         if (n == 0) return 1.0;
         double res = power(x, n / 2);
         if (n % 2 == 0) {
-            //System.out.println("偶数" + "res=" + res + ",n=" + n);
             return res * res;
         }
-        //System.out.println("奇数" + "res=" + res + ",n=" + n);
         return res * res * x;
     }
 }
