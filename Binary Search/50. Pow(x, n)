@@ -1,0 +1,24 @@
+/***
+Implement pow(x, n).
+***/
+方法：分治递归
+class Solution {
+    public double myPow(double x, int n) {
+        if (n < 0) {
+            double res = power(x, -n);
+            return (int) 1.0 / res;
+        }
+        else if (n == 0) return 1;
+        else return power(x, n);
+    }
+    private double power (double x, int n) {
+        if (n == 0) return 1.0;
+        double res = power(x, n / 2);
+        if (n % 2 == 0) {
+            //System.out.println("偶数" + "res=" + res + ",n=" + n);
+            return res * res;
+        }
+        //System.out.println("奇数" + "res=" + res + ",n=" + n);
+        return res * res * x;
+    }
+}
