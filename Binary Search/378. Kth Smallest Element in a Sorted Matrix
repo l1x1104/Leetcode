@@ -17,6 +17,7 @@ Note:
 You may assume k is always valid, 1 ≤ k ≤ n^2.
 ***/
 
+#1 Binary Search
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
         int n = matrix.length;
@@ -47,3 +48,32 @@ class Solution {
  }
  这算法有个问题：极端情况：k == 1,
               假如第一个和最后数相差非常大，每次mid值都很大，逼近第一个数非常慢，worse case复杂度O(n^2). 不如暴力解O(n).
+ 
+ #2 Priority Queue 
+ class Solution {
+    public int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>(k, new Comparator<Integer>(){
+            @Override
+            public int compare(Integer a, Integer b) {
+                return b - a;
+            }
+        });
+        int count = 0;
+        for (int i = 0; i <= n - 1; i++) {
+            for (int j = 0; j <= n - 1; j++) {
+                if (count < k) {
+                    count ++;
+                    pq.offer(matrix[i][j]);
+                }else {
+                    if (pq.peek() > matrix[i][j]) {
+                        pq.poll();
+                        pq.offer(matrix[i][j]);
+                    }
+                }
+            }
+        }
+        return pq.peek();
+    }                                                
+ }
+ 
