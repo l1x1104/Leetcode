@@ -70,3 +70,21 @@ class Solution {
         return res;
     }
  }
+
+注： binary search部分也可以这样写：
+            while (start < end) {
+                int mid = (start + end) / 2;
+                int val = intervals[mid].start;
+                if (val == target) {
+                    res[i] = map.get(val);
+                    break;
+                }
+                else if (val < target) {
+                    start = mid + 1;
+                } else {
+                    end = mid;
+                }
+            }
+            if (start < intervals.length && intervals[start].start >= intervals[i].end) {
+                res[map.get(intervals[i].start)] = map.get(intervals[start].start);
+            }
