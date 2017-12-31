@@ -49,3 +49,52 @@ public class Solution {
       e -> 4
       After you pick a, and b, c will be picked, and index is 3. Now if you have to pick d, you can’t pick index 2 because c 
       was picked at 3, so you have to binary search for index which comes after 3. So it returns 5.
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        if (s.length() == 0) return true;
+        Map<Character, List<Integer>> map = new HashMap<>();
+        
+        for (int i = 0; i < t.length(); i++) {
+            char ch = t.charAt(i);
+            if (!map.containsKey(ch)) {
+                List<Integer> tmp = new ArrayList<>();
+                tmp.add(i);
+                map.put(ch, tmp);
+            } else {
+                map.get(ch).add(i);
+            }
+        }
+        int lastIndex = -1;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (!map.containsKey(ch)) return false;
+            else {
+                List<Integer> tmpList = map.get(ch);
+                //int index = Collections.binarySearch(tmpList, lastIndex + 1);
+                //if (index < 0) index = -index - 1;
+                //if (index == tmpList.size()) return false;
+                //lastIndex = tmpList.get(index); 
+                int index = binarySearch(tmpList, lastIndex + 1);
+                if (index == -1) return false;
+                lastIndex = tmpList.get(index);
+            }
+        }
+        return true;
+    }
+    public int binarySearch (List<Integer> lst, int target) {
+        int i = 0, j = lst.size() - 1;
+        while (i + 1 < j) {
+            int mid = (i + j) / 2;
+            if (lst.get(mid) == target) {
+                return mid;
+            } else if (lst.get(mid) < target) {
+                i = mid + 1;
+            } else {
+                j = mid;
+            }
+        }
+        if (lst.get(i) >= target) return i;
+        else if (lst.get(j) >= target) return j;
+        return -1;
+    }
+}
