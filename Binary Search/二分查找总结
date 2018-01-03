@@ -1,0 +1,109 @@
+二分查找法主要是解决在“一堆数中找出指定的数”这类问题。而想要应用二分查找法，这“一堆数”必须有一下特征：
+  1）存储在数组中   2）有序排列
+所以如果是用链表存储的，就无法在其上应用二分查找法了。
+注意： 中间值下标的计算，如果写成(low+high)/2，low+high可能会溢出，从而导致数组访问出错。改进的方法是将计算方式写成如下形式：
+      low + ((high-low)/2)
+  
+常见问题解决，主要是下面三个问题：
+1）二分查找元素x的下标，如无 return  -1
+2）二分查找返回x(可能有重复)第一次出现的下标，如无return  -1
+3）二分查找返回x(可能有重复)最后一次出现的下标，如无return  -1
+------------------------------------------------------------------------------------------------------------------------------
+对于问题1 我们只需要 利用最原始的的二分查找即可。
+/*  
+bin_search 二分查找元素x的下标，如无 return -1. low,high 分别为待查元素的区间的 上下界(包含边界). x为待查元素. 注意 low <= high.  
+*/ 
+模板
+int bin_search(int[] nums, int low, int high, int target)  {
+    if (nums == null || nums.length == 0) {
+        return -1;
+    }
+    while (low <= high) {
+        int mid = low + ((high - low) >> 1);
+        if (nums[mid] == target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        }   
+    }
+    return -1;
+}  
+/********** 35. Search Insert Position ************/
+Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if
+it were inserted in order.
+
+You may assume no duplicates in the array.
+
+Example 1:
+
+Input: [1,3,5,6], 5
+Output: 2
+Example 2:
+
+Input: [1,3,5,6], 2
+Output: 1
+Example 3:
+
+Input: [1,3,5,6], 7
+Output: 4
+Example 1:
+
+Input: [1,3,5,6], 0
+Output: 0
+***/
+public class Solution {
+    public int searchInsert(int[] nums, int target) {
+        if (nums.length == 0 || nums == null) {
+            return -1;
+        }
+        int l = 0, r = nums.length - 1;
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] < target) {
+                l  = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return l; // l可能是数组长度
+    }
+}
+/********** 34. Search for A Range ************/
+Given an array of integers sorted in ascending order, find the starting and ending position of a given target value.
+
+Your algorithm's runtime complexity must be in the order of O(log n).
+
+If the target is not found in the array, return [-1, -1].
+
+For example,
+Given [5, 7, 7, 8, 8, 10] and target value 8,
+return [3, 4].
+***/
+class Solution {
+    public int[] searchRange(int[] A, int target) {
+        int n = A.length;
+        int left = binarySearch(A, target);
+        if (left == n || A[left] != target) return new int[]{-1, -1};
+        int right =  binarySearch(A, target  + 1);
+        return new int[]{left, right - 1};
+    }
+    private int binarySearch (int[] num, int target) {
+        int l = 0, r = num.length;
+        while (l < r) {
+            int mid = l + ((r - l) >> 1);
+            if (num[mid] < target) {
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+        return l;
+    }
+}
+注意： 去掉了“-1”(LINE94)及(LINE100)
+      去掉了"="LINE95
+      实现了查找到第一个 >= target的位置！！
+------------------------------------------------------------------------------------------------------------------------------
