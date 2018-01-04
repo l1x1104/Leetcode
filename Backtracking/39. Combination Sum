@@ -1,0 +1,52 @@
+/***
+Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the 
+candidate numbers sums to T.
+
+The same repeated number may be chosen from C unlimited number of times.
+
+Note:
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+For example, given candidate set [2, 3, 6, 7] and target 7, 
+A solution set is: 
+[
+  [7],
+  [2, 2, 3]
+]
+***/
+
+unique combination : 1）[2,2,3]和[3,2,2]算一种，所以start不能每次从0开始. 由于每个元素可以重复使用多次，i = 上一次i.
+                     2) 数组不一定要sort(LINE30).
+
+class Solution {
+    
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> rst = new ArrayList<>();
+        List<Integer> lst = new ArrayList<>();
+        
+        if(candidates.length == 0) {
+            return rst;
+        }
+        //Arrays.sort(candidates);
+        helper(candidates, target, 0, 0, rst, lst);
+        return rst;
+    }
+    
+    public static void helper(int[] arr, int target, int start, int sum, List<List<Integer>> rst, List<Integer> lst) {
+        if(sum > target) {
+            return;
+        }else if(sum == target) {
+            rst.add(new ArrayList<>(lst));
+        }else {
+            for(int i = start; i < arr.length; i++) {
+                int remain = target - sum;
+                if(i != (arr.length - 1) && remain < arr[i]) {
+                    continue;
+                }
+                lst.add(arr[i]);
+                helper(arr, target, i, sum + arr[i], rst, lst);
+                lst.remove(lst.size() - 1);
+            }
+        }
+    }
+ }
