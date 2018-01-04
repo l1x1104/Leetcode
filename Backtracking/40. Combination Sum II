@@ -15,6 +15,8 @@ A solution set is:
   [1, 1, 6]
 ]
 ***/
+分析： 1) 第一点要求must not contain duplicate combinations通过sort之后(i > start && arr[i]==arr[i-1])跳过相同元素实现
+      2) 第二点要求only be used once通过 start = 上次index i 往后+1实现
 
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
@@ -24,8 +26,7 @@ class Solution {
             return rst;
         }
         Arrays.sort(candidates);
-        helper(candidates, target, 0, 0, rst, lst);
-        
+        helper(candidates, target, 0, 0, rst, lst);    
         return rst;
     }
     
@@ -40,11 +41,10 @@ class Solution {
                 if(remain < arr[i] || (i > start && arr[i]==arr[i-1])) {
                     continue;
                 }
-               
                 lst.add(arr[i]);
                 helper(arr, target, sum + arr[i], i + 1, rst, lst);
                 lst.remove(lst.size() - 1);
             }
         }
-    }    
+     }    
  }
