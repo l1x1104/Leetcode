@@ -51,7 +51,7 @@ class Solution {
     }
  }
 #2 long
-
+https://discuss.leetcode.com/topic/78148/java-o-logn-2-binary-search-solution
 public String smallestGoodBase(String n) {
     long num = Long.valueOf(n);        
     for (int m = (int)(Math.log(num + 1) / Math.log(2)); m >= 2; m--) {
