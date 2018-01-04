@@ -1,0 +1,50 @@
+/***
+Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+
+Each number in C may only be used once in the combination.
+
+Note:
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8, 
+A solution set is: 
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+***/
+
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> rst = new ArrayList<>();
+        ArrayList<Integer> lst = new ArrayList<>();
+        if(candidates.length == 0 || candidates == null) {
+            return rst;
+        }
+        Arrays.sort(candidates);
+        helper(candidates, target, 0, 0, rst, lst);
+        
+        return rst;
+    }
+    
+    public void helper(int[] arr, int target, int sum, int start, List<List<Integer>> rst, ArrayList<Integer> lst) {
+        if(sum > target) {
+            return;
+        }else if(sum == target) {
+            rst.add(new ArrayList<>(lst));
+        }else {
+            for(int i = start; i < arr.length; i++) {
+                int remain = target - sum;
+                if(remain < arr[i] || (i > start && arr[i]==arr[i-1])) {
+                    continue;
+                }
+               
+                lst.add(arr[i]);
+                helper(arr, target, sum + arr[i], i + 1, rst, lst);
+                lst.remove(lst.size() - 1);
+            }
+        }
+    }    
+ }
