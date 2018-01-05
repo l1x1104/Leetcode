@@ -16,36 +16,34 @@ A solution set is:
   [1, 1, 6]
 ]
 ***/
-分析： 1) 第一点要求must not contain duplicate combinations通过sort之后(i > start && arr[i]==arr[i-1])跳过相同元素实现
-      2) 第二点要求only be used once通过 start = 上次index i 往后+1实现
+分析： 1) 第一点要求 must not contain duplicate combinations通过sort之后(i > 0 && !visited[i - 1] && candidates[i] == candidates[i - 1])
+         跳过相同元素实现
+      2) 第二点要求 only be used once通过 start = 上次index i 往后+1实现
 
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> rst = new ArrayList<>();
-        ArrayList<Integer> lst = new ArrayList<>();
-        if(candidates.length == 0 || candidates == null) {
-            return rst;
-        }
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> tempList = new ArrayList<>();
         Arrays.sort(candidates);
-        helper(candidates, target, 0, 0, rst, lst);    
-        return rst;
+        boolean[] visited = new boolean[candidates.length];
+        helper(candidates, target, visited, 0, 0, tempList, res);
+        return res;
     }
-    
-    public void helper(int[] arr, int target, int sum, int start, List<List<Integer>> rst, ArrayList<Integer> lst) {
-        if(sum > target) {
-            return;
-        }else if(sum == target) {
-            rst.add(new ArrayList<>(lst));
-        }else {
-            for(int i = start; i < arr.length; i++) {
-                int remain = target - sum;
-                if(remain < arr[i] || (i > start && arr[i]==arr[i-1])) {
-                    continue;
-                }
-                lst.add(arr[i]);
-                helper(arr, target, sum + arr[i], i + 1, rst, lst);
-                lst.remove(lst.size() - 1);
-            }
+    private void helper(int[] candidates, int target, boolean[] visited, int sum, int start, List<Integer> tempList, List<List<Integer>> res) {
+        if (sum > target) {
+            return ;
+        } else if (sum == target) {
+            res.add(new ArrayList(tempList));
+            return ;
+        } 
+        for (int i = start; i < candidates.length; ++i) {
+            if (i > 0 && !visited[i - 1] && candidates[i] == candidates[i - 1]) continue;
+            tempList.add(candidates[i]);
+            visited[i]  = true;
+            helper(candidates, target, visited, sum + candidates[i], i + 1, tempList, res);
+            tempList.remove(tempList.size() - 1);
+            visited[i] = false;
+            
         }
-     }    
- }
+    }
+}
