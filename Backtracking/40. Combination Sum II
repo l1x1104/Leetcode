@@ -46,4 +46,17 @@ class Solution {
             
         }
     }
-}
+ }
+ 
+ 优化： 省一个visited数组空间。for loop里面
+           for(int i = start; i < arr.length; i++) {
+                int remain = target - sum;
+                if(remain < arr[i] || (i > start && arr[i]==arr[i-1])) {
+                    continue;
+                }
+               
+                lst.add(arr[i]);
+                helper(arr, target, sum + arr[i], i + 1, rst, lst);
+                lst.remove(lst.size() - 1);
+            }
+ 
