@@ -1,0 +1,42 @@
+
+1. 每层元素不同.(相同叫permutation)
+   比如, letter combinations
+   第一层可能的值是abc,def,ghi,..., pqrs,由此可见长度还可能不一样
+   第二层可能的值是abc,def,ghi,..., pqrs //同理长度可能不一样
+   
+   题目给的是一个string，string不是由字母组成，即是说不是直接由每一层可能的元素组成,那么这里有一个映射，string里面的每一个char map出来每一层的元素，
+   所以，最原始的函数(没优化之前)其实是这样的：
+   套用模板，
+   public void helper(List<String> res, StringBuffer sb, String[] table, String digits, int start, int index) {
+        if (sb.length() == digits.length()) {
+            res.add(sb.toString());
+            return ;
+        }
+        char[] arr = digits.toCharArray();
+        // digits的循环，从 "2->3->..."
+        //for (int i = start; i < arr.length; i++) {
+            // mapping，找出这一层对应的英文字母可能值
+            // 在此处，答案巧妙地把digits每一个char的数值map为table的index. 当然可以自己设计，不过这里直接沿用.
+            String currLevel = table[digits.charAt(index) - '0'];
+            char[] curr = currLevel.toCharArray();
+            for (int j = 0; j < curr.length; j++) {
+                sb.append(curr[j]);
+                helper(res, sb, table, digits, start + 1, index + 1);
+                sb.deleteCharAt(sb.length() - 1);
+            }
+        //}
+   }
+   
+   此处for错误的原因相当于重复了digits长度的次数，相当于正确结果的digits.length()次.
+   注意， currLevel            }
+         nextLevel            } = digits.length().
+         nextnextLevel        }
+         ...
+         (※)层的个数就相当于digits.length()!这是迭代的本质！！
+   
+   接下去继续优化不必要的传参就行了.
+   
+   
+   ---------------------------------------------------------------------------------------------------------------------------
+   
+   
