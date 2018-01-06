@@ -1,0 +1,11 @@
+同2的情况.
+
+要sort吗? permutation/排列组合要sort干嘛..不要!
+
+follow up同样思路，
+如何“删除”重复元素简化成i的问题?
+
+小技巧：
+如果层与层之间传递的是list且数组没有重复元素，那么list.contains()这个方法很好用，等同于visited.
+但在这题permutation ii不行，因为有重复元素，否则得不到像[1,1,2]这样的结果.
+
