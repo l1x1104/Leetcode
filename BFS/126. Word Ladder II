@@ -1,0 +1,68 @@
+/***
+Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:
+
+Only one letter can be changed at a time
+Each transformed word must exist in the word list. Note that beginWord is not a transformed word.
+For example,
+
+Given:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log","cog"]
+Return
+  [
+    ["hit","hot","dot","dog","cog"],
+    ["hit","hot","lot","log","cog"]
+  ]
+Note:
+Return an empty list if there is no such transformation sequence.
+All words have the same length.
+All words contain only lowercase alphabetic characters.
+You may assume no duplicates in the word list.
+You may assume beginWord and endWord are non-empty and are not the same.
+***/
+
+※ buildMap函数时间复杂度O(n^2) 不优化TLE. 
+private List<String> buildList(List<String> wordList, String str) {
+        int j = 0;
+        List<String> res = new LinkedList<>();
+        while (j != wordList.size()) {
+            String temp = wordList.get(j);
+            int count = 0;
+            if (temp != str) {
+                for (int t = 0; t < str.length(); t++) {
+                    if (str.charAt(t) != temp.charAt(t)) {
+                        count ++;
+                    }
+                }
+                if (count == 1) {
+                    res.add(temp);
+                }
+            }
+            j ++;
+        }
+        
+        return res;
+  }
+  假如wordList长度1000， 每个单词长度4，时间4^1000
+  
+  private List<String> buildList(List<String> wordList, String str) {
+      List<String> res = new LinkedList<>();
+      char[] ch = str.toCharArray();
+      for (int t = 0; t < ch.length; t++) {
+          char temp = ch[t];
+          for (char c = 'a'; c <= 'z'; c++) {
+            if (temp != str.charAt(t)) {
+                ch[t] = c;
+                String nb = String.valueOf(ch);
+                if (wordList.contains(nb)) {
+                    res.add(nb);
+                }
+            }
+          }
+          ch[t] = temp;
+      }
+      return res;
+  }
+  
+
