@@ -85,7 +85,6 @@ class Solution {
             if (neighbors.containsKey(graph[i][1])) {
                 List<Integer> nbs = neighbors.get(graph[i][1]);
                 nbs.add(graph[i][0]);
-                
             } else {
                 List<Integer> nbs = new LinkedList<>();
                 nbs.add(graph[i][0]);
