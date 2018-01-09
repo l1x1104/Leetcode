@@ -5,7 +5,7 @@ BFS can be done in undirected graph as well, with absolute no change in the algo
 ※The only difference in the process is: 
 since every edge is undirected, it would be considered for twice, once for each endpoint.
 
-The main purse purpose of numbering is  which order to go the vertices in the pool advance the next pool. The sequence number
+The main purpose of numbering is  which order to go the vertices in the pool advance the next pool. The sequence number
 would be deal out in FIFO fashion. The FIFO mechanism can be forced using a queue in stead of numbers.
 
 In undirected graph, "restart"(在有向图中，从任意某一个起点开始很可能不能走完所有的vertices,选择没有visited的restart) only happen if the 
