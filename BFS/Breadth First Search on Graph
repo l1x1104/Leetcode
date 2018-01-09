@@ -1,0 +1,23 @@
+1. Algorithm
+
+BFS can be done in undirected graph as well, with absolute no change in the algorithm.
+
+※The only difference in the process is: 
+since every edge is undirected, it would be considered for twice, once for each endpoint.
+
+The main purse purpose of numbering is  which order to go the vertices in the pool advance the next pool. The sequence number
+would be deal out in FIFO fashion. The FIFO mechanism can be forced using a queue in stead of numbers.
+
+In undirected graph, "restart"(在有向图中，从任意某一个起点开始很可能不能走完所有的vertices,选择没有visited的restart) only happen if the 
+graph is disconnected.
+
+※ Time complexity? depends on what operations during running time.
+  Two things repeatedly:  1. visits Vertex 
+                          2. from every Vertex checks to see if the neighboors have been visited or not
+                          We count each one unit of time.
+  Directed: O(n+e)    \
+                       |-> They both converted to running time O(n+e)   
+  Undirected: O(n+2e) /
+  
+  2. Implementation
+  https://www.youtube.com/watch?v=ZVJFOrsHxMs
