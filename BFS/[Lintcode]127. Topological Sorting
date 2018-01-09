@@ -1,0 +1,99 @@
+/***
+Given an directed graph, a topological order of the graph nodes is defined as follow:
+      1) For each directed edge A -> B in graph, A must before B in the order list.
+      2) The first node in the order can be any node in the graph with no nodes direct to it. 
+      
+Find any topological order for the given graph.
+
+Example:
+For graph as follow:
+
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThE9AgZZszyhwe0o9qpp3VyizdIj9kWwMY50HiQEysXvkSLsoZ
+
+The topological order can be:
+[0, 1, 2, 3, 4, 5] 
+[0, 2, 3, 1, 5, 4] 
+...
+
+Challenge: Can you do it in both BFS and DFS?
+***/
+
+/**
+ * Definition for Directed graph.
+ * class DirectedGraphNode {
+ *     int label;
+ *     ArrayList<DirectedGraphNode> neighbors;
+ *     DirectedGraphNode(int x) { label = x; neighbors = new ArrayList<DirectedGraphNode>(); }
+ * };
+ */
+public class Solution {
+    /**
+     * @param graph: A list of Directed graph node
+     * @return: Any topological order for the given graph.
+     */    
+    public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
+        // write your code here
+        List<DirectedGraphNode> order = new ArrayList<>();
+        
+        if (graph == null) return order;
+        
+        // 1. count degree
+        Map<DirectedGraphNode, Integer> indegree = getIndegree(graph);
+        
+        // 2. topological sorting - bfs
+        List<DirectedGraphNode> startNodes = getStartNodes(indegree, graph);
+        
+        // 3. bfs
+        order = bfs(indegree, startNodes);
+        
+        if (order.size() == graph.size()) return order;
+        
+        return null;
+    }
+    private ArrayList<DirectedGraphNode> bfs(Map<DirectedGraphNode, Integer> indegree, ArrayList<DirectedGraphNode> nodes) {
+          Queue<DirectedGraphNode> q = new LinkedList<>();
+          ArrayList<DirectedGraphNode> order = new ArrayList<>();
+          
+          for (DirectedGraphNode begin: nodes) {
+              q.offer(begin);
+              order.add(begin);
+          }
+          
+          while (!q.isEmpty()) { // O(V)
+              DirectedGraphNode curr = q.poll();
+              for (DirectedGraphNode nb: curr.neighbors) { // O(V)
+                  // node -> neighbor
+                  indegree.put(nb, indegree.get(nb) - 1);
+                  if (indegree.get(nb) == 0) {
+                      q.offer(nb);
+                      order.add(nb);
+                  }
+              }
+          }
+          
+          return order;
+    }
+    
+    private Map<DirectedGraphNode, Integer> getIndegree(ArrayList<DirectedGraphNode> graph) {
+        Map<DirectedGraphNode, Integer> map = new HashMap<>();   
+        for (DirectedGraphNode node : graph) {
+            for (DirectedGraphNode neighbor : node.neighbors) {
+                if (map.containsKey(neighbor)) {
+                    map.put(neighbor, map.get(neighbor) + 1);
+                } else {
+                    map.put(neighbor, 1); 
+                }
+            }
+        }
+        return map;
+    }
+    private ArrayList<DirectedGraphNode> getStartNodes(Map<DirectedGraphNode, Integer> indegree, ArrayList<DirectedGraphNode> graph) {
+        ArrayList<DirectedGraphNode> nodes = new ArrayList<>();
+        for (DirectedGraphNode node: graph) {
+            if (indegree.get(node) == 0) {
+                nodes.add(node);
+            }
+        }
+        return nodes;
+    }
+ }    
