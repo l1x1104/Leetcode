@@ -1,0 +1,108 @@
+ ※一道看似简单的题，无数坑
+
+/***
+There are a total of n courses you have to take, labeled from 0 to n - 1.
+
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a 
+pair: [0,1]
+
+Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
+
+For example:
+
+2, [[1,0]]
+There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.
+
+2, [[1,0],[0,1]]
+There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should 
+also have finished course 1. So it is impossible.
+
+Note:
+The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is 
+represented.
+
+You may assume that there are no duplicate edges in the input prerequisites.
+***/
+
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        // corner case
+        if (prerequisites.length == 0) return true;
+        
+        // mapping: course -> neighbors
+        Map<Integer, List<Integer>> neighbors = new HashMap<>();
+        
+        // 1. count degree 
+        Map<Integer, Integer> indegree = getIndegree(prerequisites, neighbors);
+            
+        // 2. topological sorting - bfs
+        List<Integer> startNodes = getStartNodes(indegree, prerequisites);
+        //System.out.println("size:" + startNodes.size() + startNodes.get(0));
+        if (startNodes.size() == 0) return false; 
+        
+        // 3. bfs
+        List<Integer> order = bfs(startNodes, indegree, neighbors);    
+            
+        return numCourses >= order.size() && order.size() == neighbors.size();
+    }
+    private List<Integer> bfs(List<Integer> startNodes, Map<Integer, Integer> indegree, Map<Integer, List<Integer>> neighbors) {
+        List<Integer> order = new LinkedList<>();
+        Queue<Integer> q = new LinkedList<>();
+        
+        for (Integer begin: startNodes) {
+            q.offer(begin);
+            order.add(begin);
+        }
+        
+        while (!q.isEmpty()) {
+            Integer curr = q.poll();
+            List<Integer> nbs = neighbors.get(curr);
+            if (nbs == null) {
+                neighbors.put(curr, new ArrayList<>());
+                continue;
+            }   
+            for (Integer nb: nbs) {
+                indegree.put(nb, indegree.get(nb) - 1);
+                if (indegree.get(nb) == 0) {
+                    q.offer(nb);
+                    order.add(nb);
+                }
+            }
+        }
+        return order;
+    }
+    
+    private Map<Integer, Integer> getIndegree(int[][] graph, Map<Integer, List<Integer>> neighbors) {
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        // Graph Traversal
+        for (int i = 0; i < graph.length; i++) {
+            if (map.containsKey(graph[i][0])) {
+                map.put(graph[i][0], map.get(graph[i][0]) + 1);
+            } else {
+                map.put(graph[i][0], 1);
+            }
+            if (neighbors.containsKey(graph[i][1])) {
+                List<Integer> nbs = neighbors.get(graph[i][1]);
+                nbs.add(graph[i][0]);
+                
+            } else {
+                List<Integer> nbs = new LinkedList<>();
+                nbs.add(graph[i][0]);
+                neighbors.put(graph[i][1], nbs);
+            }
+        }
+        
+        return map;
+    } 
+    private List<Integer> getStartNodes(Map<Integer, Integer> indegree, int[][] graph) {
+        Set<Integer> res = new HashSet<>();
+        
+        for (int i = 0; i < graph.length; i++) {
+            if (!indegree.containsKey(graph[i][1])) {
+                res.add(graph[i][1]);
+            }
+        }
+        return new ArrayList<>(res);
+    }
+}
