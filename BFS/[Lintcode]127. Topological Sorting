@@ -33,7 +33,7 @@ public class Solution {
      */    
     public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
         // write your code here
-        List<DirectedGraphNode> order = new ArrayList<>();
+        ArrayList<DirectedGraphNode> order = new ArrayList<>();
         
         if (graph == null) return order;
         
@@ -41,7 +41,7 @@ public class Solution {
         Map<DirectedGraphNode, Integer> indegree = getIndegree(graph);
         
         // 2. topological sorting - bfs
-        List<DirectedGraphNode> startNodes = getStartNodes(indegree, graph);
+        ArrayList<DirectedGraphNode> startNodes = getStartNodes(indegree, graph);
         
         // 3. bfs
         order = bfs(indegree, startNodes);
@@ -77,6 +77,9 @@ public class Solution {
     private Map<DirectedGraphNode, Integer> getIndegree(ArrayList<DirectedGraphNode> graph) {
         Map<DirectedGraphNode, Integer> map = new HashMap<>();   
         for (DirectedGraphNode node : graph) {
+            if (!map.containsKey(node)) {
+                map.put(node, 0);
+            }
             for (DirectedGraphNode neighbor : node.neighbors) {
                 if (map.containsKey(neighbor)) {
                     map.put(neighbor, map.get(neighbor) + 1);
