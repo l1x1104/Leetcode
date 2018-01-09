@@ -14,7 +14,7 @@ graph is disconnected.
 ※ Time complexity? depends on what operations during running time.
   Two things repeatedly:  1. visits Vertex 
                           2. from every Vertex checks to see if the neighboors have been visited or not
-                          We count each one unit of time.
+  We count each one unit of time.
   Directed: O(n+e)    \
                        |-> They both converted to running time O(n+e)   
   Undirected: O(n+2e) /
