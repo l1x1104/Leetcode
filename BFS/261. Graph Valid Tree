@@ -1,0 +1,80 @@
+/***
+Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), write a function to check 
+whether these edges make up a valid tree.
+
+For example:
+
+Given n = 5 and edges = [[0, 1], [0, 2], [0, 3], [1, 4]], return true.
+
+Given n = 5 and edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]], return false.
+
+Note: you can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0]
+and thus will not appear together in edges.
+***/
+
+class Solution {
+    public boolean validTree(int n, int[][] edges) {
+        // corner case: n == 1, edges == []
+        if (n == 1 && edges.length == 0) return true;
+        
+        // 1. (N-1) edges
+        if (n != edges.length + 1) return false;
+        
+        // 2. N connected component
+        Map<Integer, Set<Integer>> map = new HashMap<>();
+        Set<Integer> vis = new HashSet<>();
+        
+            // mapping: Vertex -> neighboors
+            buildMap(edges, map);
+        
+            // bfs
+            bfs(vis, map, edges[0][0]);
+        
+        return vis.size() == n;
+        
+    }
+    private void buildMap(int[][] edges, Map<Integer, Set<Integer>> map) {
+        int n = edges.length;
+        for (int i = 0; i < n; i++) {
+            // [a,b]
+            if (!map.containsKey(edges[i][0])) {
+                Set<Integer> set = new HashSet<>();
+                set.add(edges[i][1]);
+                map.put(edges[i][0], set);
+            } else {
+                Set<Integer> set = map.get(edges[i][0]);
+                set.add(edges[i][1]);
+                map.replace(edges[i][0], set);
+            }
+            // [b,a]
+            if (!map.containsKey(edges[i][1])) {
+                Set<Integer> set = new HashSet<>();
+                set.add(edges[i][0]);
+                map.put(edges[i][1], set);
+            } else {
+                Set<Integer> set = map.get(edges[i][1]);
+                set.add(edges[i][0]);
+                map.replace(edges[i][1], set);
+            }
+        }
+    }
+    private void bfs(Set<Integer> vis, Map<Integer, Set<Integer>> map, int start) {
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(start);
+        vis.add(start);
+        
+        while (!q.isEmpty()) {
+            int curr = q.poll();
+            Set<Integer> neighboors = map.get(curr);
+            for (Integer nb: neighboors) {
+                if (!vis.contains(nb)) {
+                    q.offer(nb);
+                    vis.add(nb);
+                } 
+            }
+        }
+    }
+ }
+ 
+ 祝贺我写出如此逻辑清晰美观的代码
+ 
