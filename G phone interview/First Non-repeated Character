@@ -1,0 +1,46 @@
+leetcode 387. First Unique Character in a String
+
+Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+
+Examples:
+
+s = "leetcode"
+return 0.
+
+s = "loveleetcode",
+return 2.
+Note: You may assume the string contain only lowercase letters.
+
+方法一(不是面试官想要的答案)
+思路: "只出现一次" 等价于 第一次出现等于最后一次出现
+class Solution {
+    public int firstUniqChar(String s) {
+        int index = s.length();
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (s.indexOf(c) == -1) continue;
+            else if (s.indexOf(c) == s.lastIndexOf(c)) {
+                index = Math.min(index, s.indexOf(c));
+            }
+        }
+        return (index == s.length() ? -1 : index);
+    }
+}
+
+方法二
+思路: 字母有对应的的ASCII码，a = b - '0'通过ASCII码转换为数字. 'a' - 97  'A' - 65   (Go check ASCII Table）
+     用每个字母对应的code作为index，数组中存的数是各字母频数.
+class Solution {
+    public int firstUniqChar(String s) {
+        int[] map = new int[26];
+        for (int x = 0; x < s.length(); x++) {
+            map[s.charAt(x) - 'a'] += 1;
+        }
+        for (int x = 0; x < s.length(); x++) {
+            if (map[s.charAt(x) - 'a'] == 1) return x;
+        }
+        return -1;
+    }
+ }
+ 
+ 方法三
+
