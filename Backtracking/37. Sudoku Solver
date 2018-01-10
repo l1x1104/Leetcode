@@ -1,0 +1,78 @@
+/***
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+Empty cells are indicated by the character '.'.
+
+You may assume that there will be only one unique solution.
+***/
+
+class Solution {
+    public void solveSudoku(char[][] board) {
+        if (board == null || board.length == 0 || board[0].length == 0) return ;
+        dfsHelper(board, 0, 0);
+    }
+    
+    private boolean dfsHelper(char[][] board, int i, int j) {
+        // Base case
+        while (board[i][j] != '.') {
+            j ++; // change to next column
+            if (j == 9) {
+                if (i == 8) return true; // the right bottom most - last unit, change to next line where j == 9 terminate when i == 8;
+                i ++;
+                j = 0;
+            }
+        }
+        boolean[] rowChecker = new boolean[9];
+        boolean[] colChecker = new boolean[9];
+        boolean[] subChecker = new boolean[9];
+        
+        // 如何判断每行每列是否有某个数？最原始的方法是浏览当前行的每一个元素，比较是否相等
+        // 优化：每一行用同一个Boolean数组，用字符值作为index检查Boolean[index]是否为true， 是，返回false, 否，当前位置为true
+        fillCheckers(board, rowChecker, colChecker, subChecker, i, j);
+        
+        for (int cur = 1; cur <= 9; cur++) {
+            board[i][j] = (char)(cur + '0');
+            if (check(board, rowChecker, colChecker, subChecker, i, j, cur) && dfsHelper(board, i, j)) {
+                return true;
+            }
+            board[i][j] = '.';
+        }
+        return false;
+    }
+    
+    private boolean check(char[][] board, boolean[] rowChecker, boolean[] colChecker, boolean[] subChecker, int i, int j, int curr) {
+        if (rowChecker[curr- 1] || colChecker[curr - 1] || subChecker[curr - 1]) {
+            return false;
+        }
+        return true;
+    }
+    
+    private void fillCheckers(char[][] board, boolean[] rowChecker, boolean[] colChecker, boolean[] subChecker, int row, int col) {
+        // Fill row
+        for (int j = 0; j < 9; j++) {
+            if (board[row][j] != '.') {
+                rowChecker[board[row][j] - '1'] = true;
+            }
+        }
+        // Fill column
+        for (int i = 0; i < 9; i++) {
+            if (board[i][col] != '.') {
+                colChecker[board[i][col] - '1'] = true;
+            }
+        }
+        // Fill subMatrix
+        int startX = row / 3, startY = col / 3;
+        for (int x = startX * 3; x < startX * 3 + 3; x ++) {
+            for (int y = startY * 3; y < startY * 3 + 3; y++) {
+                if (board[x][y] != '.') {
+                    subChecker[board[x][y] - '1'] = true;
+                }
+            }
+        }
+    }
+ }
+ 
+ 进步1 - 优化fillRow
+        同一行每前进一步把当前位置index设为true, 如果回退,board[i][j]='.', 把rowChecker设为false
+    
+    
