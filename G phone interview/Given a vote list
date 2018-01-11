@@ -46,4 +46,5 @@ Space: O(c * l) c is number of candidates
 ※ HashMap原理
 
 
-(2) 这里的input K 猜测是k个[name, timeStamp]，让你求出时间点T前最高票的k个票数.
+(2) 多给一个input K, 找T时间之前, Top K 得票数的人
+
