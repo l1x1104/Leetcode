@@ -1,0 +1,50 @@
+QUESTION
+
+Give a vote list = [(a, 100), (b, 150), (a, 200)] # (name, timestamp) and time T 
+Find the highest number of votes (or anyone with the highest number of votes) at T 
+ex: T = 100 -> a, T = 150 -> a or b, T = 200 -> a 
+
+(2)followup1, give one more input K, find Top K votes at T 
+
+(3)followup2, the same vote list, K, but given the Top K votes list, find the time T.
+
+(1) For the first question, just travers the vote list and if vote.T <= T increment
+the vote for person vote.Name. While doing that maximize the vote number. 
+(O(n*l) time, O(c*l) space, c is the number of candidates, l is average length of name)
+class Vote {
+    int time;
+    String name;
+}
+
+private String topK(Vote[] votes, int T) {
+    Map<String, Integer> map = new HashMap<>();
+    int max_count = 0;
+    String max_name = "";
+    for (Vote v: votes) { // O(n)
+        int t = v.time;
+        String n = v.name;
+        if (t <= T) {
+            if (!map.containsKey(v)) {  // O(l) : l is the lenth of candidate name
+                map.put(n, 1);
+            } else {
+                int count = map.get(n) + 1;
+                if (count > max_count) {
+                    max_count = count;
+                    max_name = n;
+                }
+                map.put(n, count);
+                
+            }
+        }
+    }
+    return max_name;
+}
+
+Time: O(n * l)
+Space: O(c * l) c is number of candidates
+
+※ HashMap原理
+
+
+(2) 这里的input K 猜测是k个candidates名字，让你求出
+在
