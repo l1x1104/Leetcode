@@ -1,0 +1,12 @@
+
+ -----------------------------------------------------------------------------------------------------------------------------
+| Given a rectangular on a 2D coordinate, write a function to return (x, y) pair so that the distribution of the return value | 
+| is uniform within the rectangular.                                                                                          |     |
+|                                                                                                                             |
+| Followup 1: What if you are given multiple non-overlapping rectangular areas? How to generate uniformly distributed (x, y)  | 
+| pair?                                                                                                                       |
+|                                                                                                                             |
+| Followup 2: What if you are given an arbitrary shaped area?                                                                 |
+ -----------------------------------------------------------------------------------------------------------------------------
+ 
+ 
