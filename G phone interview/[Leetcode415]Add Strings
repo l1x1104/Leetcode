@@ -23,3 +23,5 @@ class Solution {
         return sb.reverse().toString();  
     }
 }
+ 
+也可以用sb.insert(offset, String/Integer) 这个方法，这样最后结果不用reverse
