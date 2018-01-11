@@ -47,4 +47,16 @@ Space: O(c * l) c is number of candidates
 
 
 (2) 多给一个input K, 找T时间之前, Top K 得票数的人
+第三題我用到heap做
+先O(n)算出時間<=T 內每個人得票數
+然後再用一個大小最大是K的 minHeap 存Top K
+把剛剛算過的跑一次for loop
+如果 heap size < K, 直接push (得票數, 人名)
+如果 heap size >= K, 比較heap[0]的得票數跟現在的得票數
 
+（3）一样给vote list K, 但这次给Top K list, 找时间T
+//I assume given are the top K candidates at a certain time T I have to find.
+先整理出每個時間T每個人被投了幾票
+然後從比較小的T開始累加得票數，重複做(3)的top k，看這次的top K有沒有等於input
+有就return T
+只是這樣如果同時間有多種組合的top k就可能找不到，但面試官說可以了
