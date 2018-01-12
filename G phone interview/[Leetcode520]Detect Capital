@@ -1,0 +1,36 @@
+Wrong Example:
+Input:
+"FFFFFFFFFFFFFFFFFFFFf"
+Output:
+true
+Expected:
+false
+
+分析: 
+Based on the rule, we can check the 2 leading letter, there is three situations:
+  1） UU, following letters must be all upper;
+  2） UL, following letters must be all lower;
+  3） LL, same be lower;
+  4） LU, false;
+
+    public boolean detectCapitalUse(String word) {
+    
+      if(word.length() <= 1) return true;
+      char[] cs = word.toCharArray();
+      
+      boolean followUpper = true;
+      if(Character.isLowerCase(cs[1])){
+        followUpper = false;  
+      } else {
+        if(Character.isLowerCase(cs[0])){
+          return false;    
+        } 
+      }
+      
+      for(int i = 2; i < cs.length; i++){
+        if(followUpper && Character.isLowerCase(cs[i])) return false;
+        if(!followUpper && Character.isUpperCase(cs[i])) return false;
+      }
+      
+      return true;
+    }
