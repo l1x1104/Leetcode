@@ -17,4 +17,26 @@ Explanation: The perimeter is the 16 yellow stripes in the image below:
      2. if the current dot is an island, count if it has any right neighbour or down neighbour;
      3. the result is islands * 4 - neighbours * 2
      
-方法 
+方法1 暴搜
+class Solution {
+    public int islandPerimeter(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) count += countIsland(i, j, grid);
+            }
+        }
+        return count;
+    }
+    
+    private int countIsland(int i, int j, int[][] grid) {
+        int count = 0;
+        int l = j - 1, r = j + 1, d = i + 1, u = i - 1;
+        if (l < 0 || grid[i][l] == 0) count ++; // left
+        if (r >= grid[0].length || grid[i][r] == 0) count ++; // right
+        if (d >= grid.length || grid[d][j] == 0) count ++; // down
+        if (u < 0 || grid[u][j] == 0) count ++; // up
+        return count;
+    }
+}
