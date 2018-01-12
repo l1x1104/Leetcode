@@ -1,0 +1,22 @@
+
+    public boolean areSentencesSimilar(String[] words1, String[] words2, String[][] pairs) {
+        // 1. word1 != word长度
+        if (words1.length != words2.length) return false;
+        
+        // 2 & 3 word可以对应自己或者映射关系成立
+        Map<String, Set<String>> map = new HashMap<>();
+        for (String[] p : pairs) {
+            if (!map.containsKey(p[0])) map.put(p[0], new HashSet<>());
+            map.get(p[0]).add(p[1]);
+        }
+
+        for (int i = 0; i < words1.length; i++)
+            if (!words1[i].equals(words2[i]) && !map.getOrDefault(words1[i], new HashSet<>()).contains(words2[i]) 
+                && !map.getOrDefault(words2[i], new HashSet<>()).contains(words1[i]))
+                return false;
+        return true;
+    }
+    
+    受教了
+    如果map是空集应该这么表达!map.getOrDefault(words1[i], new HashSet<>())
+    这样Corner case words1 = ["great"], words2 = ["great"], pairs = [] pairs是空，map也是空，不会出现nullPointer Exception的错误
