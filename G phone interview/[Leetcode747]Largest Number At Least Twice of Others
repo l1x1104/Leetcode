@@ -1,0 +1,15 @@
+class Solution {
+    public int dominantIndex(int[] nums) {
+        int index = -1, first = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
+        for (int x = 0; x < nums.length; x++) {
+            if (first < nums[x]) {
+                index = x;
+                second = first;
+                first = nums[x];
+            } else if (second < nums[x]) {
+                second = nums[x];
+            }
+        }
+        return (first >= second * 2) ? index : -1;
+    }
+}
