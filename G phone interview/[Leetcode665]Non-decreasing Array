@@ -34,3 +34,6 @@ false
         }
         return cnt<=1; 
     }
+
+
+※ 由此题可明白，
