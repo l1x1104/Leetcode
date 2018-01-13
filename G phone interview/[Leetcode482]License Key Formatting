@@ -34,10 +34,10 @@ String S is non-empty.
       char[] sc = S.toCharArray();
       for(int i = sc.length - 1; i >= 0; i--){
           if(sc[i] == '-') continue;
-          sb.append(sc[i]);
           if(sb.length() % (K + 1) == K) sb.append('-');     // 规律是sb长度为2,5,8的时候需要更新。故 sb.length() % k == 0肯定是不对的
+          sb.append(sc[i]);
       }
       return sb.reverse().toString().toUpperCase();
-        
-        
     }
+
+注意sb.length() % (K + 1) == K这句
