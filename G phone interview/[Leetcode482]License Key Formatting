@@ -40,4 +40,4 @@ String S is non-empty.
       return sb.reverse().toString().toUpperCase();
     }
 
-注意sb.length() % (K + 1) == K这句
+注意sb.length() % (K + 1) == K这句不能放在后面，你肯定不想比如"-5F3Z-2E9W"这样的答案出现对吧
