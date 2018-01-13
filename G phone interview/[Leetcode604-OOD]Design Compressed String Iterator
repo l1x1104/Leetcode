@@ -37,7 +37,7 @@ public class StringIterator {
         int i = 0, n = s.length();
         while (i < n) {
             int j = i+1;
-            while (j < n && s.charAt(j) - 'A' < 0) j++;  //数字ASCII码在前面
+            while (j < n && s.charAt(j) - 'A' < 0) j++;  //数字ASCII码在前面. '0'是48
             queue.add(new int[]{s.charAt(i) - 'A',  Integer.parseInt(s.substring(i+1, j))});
             i = j;
         }
