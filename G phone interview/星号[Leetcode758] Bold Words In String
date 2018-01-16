@@ -16,6 +16,7 @@ S has length in range [0, 500].
 All characters in words[i] and S are lowercase letters.
 
 ***/
+https://discuss.leetcode.com/topic/116291/java-clean-code-merging-interval-solution
 
 思路: 大概就是在一串字符里面找一个个区间，并且把区间用tag表示就可以了.
      For example:         index:  0  1  2  3  4  5  6  7  8 
@@ -26,35 +27,36 @@ All characters in words[i] and S are lowercase letters.
                                     [             ]
                        找substring: [1,2][2,3][4,5] -> [1,5]
 class Solution {
-    public String boldWords(String[] words, String S) {
-        int N = S.length();
-        boolean[] mask = new boolean[N];
-        for (int i = 0; i < N; ++i)
-            for (String word: words) search: {
-                for (int k = 0; k < word.length(); ++k)
-                    if (k+i >= S.length() || S.charAt(k+i) != word.charAt(k))
-                        break search;
-
-                for (int j = i; j < i+word.length(); ++j)
-                    mask[j] = true;
-            }
-
-        StringBuilder ans = new StringBuilder();
-        int anchor = 0;
-        for (int i = 0; i < N; ++i) {
-            if (mask[i] && (i == 0 || !mask[i-1]))
-                ans.append("<b>");
-            ans.append(S.charAt(i));
-            if (mask[i] && (i == N-1 || !mask[i+1]))
-                ans.append("</b>");
+    class Interval {
+        int start;
+        int end;
+        public Interval(int s, int e) {
+            start = s;
+            end = e;
         }
-        return ans.toString();
     }
-
-    public boolean match(String S, int i, int j, String T) {
-        for (int k = i; k < j; ++k)
-            if (k >= S.length() || S.charAt(k) != T.charAt(k-i))
-                return false;
-        return true;
+    public String boldWords(String[] words, String S) {
+        int ls = S.length();
+        List<Interval> list = new ArrayList<>();
+        for (String word : words) {
+            int lw = word.length();
+            for (int i = 0; i < ls - lw + 1; i++) {
+                if (S.substring(i, i + lw).equals(word)) list.add(new Interval(i, i + lw));
+            }
+        }
+        Collections.sort(list, (l1, l2) -> (l1.start - l2.start));
+        for (int i = 0; i < list.size(); i++) {
+            if (i + 1 < list.size() && list.get(i + 1).start <= list.get(i).end) {
+                list.get(i).end = Math.max(list.get(i).end, list.get(i + 1).end);
+                list.remove(i + 1);
+                i--;
+            }
+        }
+        StringBuilder sb = new StringBuilder(S);
+        for (int i = 0; i < list.size(); i++) {
+            int start = list.get(i).start + i * 7, end = list.get(i).end + i * 7 + 3;
+            sb.insert(start, "<b>").insert(end, "</b>");
+        }
+        return sb.toString();
     }
-}
+ }
