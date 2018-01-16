@@ -18,8 +18,8 @@ All characters in words[i] and S are lowercase letters.
 ***/
 
 思路: 大概就是在一串字符里面找一个个区间，并且把区间用tag表示就可以了.
-     For example:         index:  0  1  2  3  4  5  6  7  8  9
-                       String S: [a  a  b  c  d  a    e  d  c]
+     For example:         index:  0  1  2  3  4  5  6  7  8 
+                       String S: [a  a  b  c  d  a  e  d  c]
                        keywords: "ab" "bc" "da"
                                     [   ]
                                     [       ]
