@@ -36,3 +36,20 @@ class Solution {
 }
 
 ※ 用StringBuilder不占用栈空间，String全部是final static的，实际应用内存占用太多.
+   private void helper(TreeNode root, StringBuilder sb, List<String> res) {
+        // pre-order
+        if (root == null) return ;
+        else if (root.left == null && root.right == null) {
+            int len = sb.length();
+            sb.append(root.val);
+            res.add(sb.toString());
+            sb.delete(len, sb.length());
+            return ;
+        }
+        int temp = sb.length();
+        sb.append(root.val);
+        sb.append("->");
+        helper(root.left, sb, res);
+        helper(root.right, sb, res);
+        sb.delete(temp, sb.length());
+    }
