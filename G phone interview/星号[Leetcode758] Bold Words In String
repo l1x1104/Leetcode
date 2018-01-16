@@ -1,0 +1,60 @@
+/***
+
+Given a set of keywords words and a string S, make all appearances of all keywords in S bold. Any letters between <b> and </b> 
+tags become bold.
+
+The returned string should use the least number of tags possible, and of course the tags should form a valid combination.
+
+For example, given that words = ["ab", "bc"] and S = "aabcd", we should return "a<b>abc</b>d". Note that returning 
+"a<b>a<b>b</b>c</b>d" would use more tags, so it is incorrect.
+
+Note:
+
+words has length in range [0, 50].
+words[i] has length in range [1, 10].
+S has length in range [0, 500].
+All characters in words[i] and S are lowercase letters.
+
+***/
+
+思路: 大概就是在一串字符里面找一个个区间，并且把区间用tag表示就可以了.
+     For example:         index:  0  1  2  3  4  5  6  7  8  9
+                       String S: [a  a  b  c  d  a    e  d  c]
+                       keywords: "ab" "bc" "da"
+                                    [   ]
+                                    [       ]
+                                    [             ]
+                       找substring: [1,2][2,3][4,5] -> [1,5]
+class Solution {
+    public String boldWords(String[] words, String S) {
+        int N = S.length();
+        boolean[] mask = new boolean[N];
+        for (int i = 0; i < N; ++i)
+            for (String word: words) search: {
+                for (int k = 0; k < word.length(); ++k)
+                    if (k+i >= S.length() || S.charAt(k+i) != word.charAt(k))
+                        break search;
+
+                for (int j = i; j < i+word.length(); ++j)
+                    mask[j] = true;
+            }
+
+        StringBuilder ans = new StringBuilder();
+        int anchor = 0;
+        for (int i = 0; i < N; ++i) {
+            if (mask[i] && (i == 0 || !mask[i-1]))
+                ans.append("<b>");
+            ans.append(S.charAt(i));
+            if (mask[i] && (i == N-1 || !mask[i+1]))
+                ans.append("</b>");
+        }
+        return ans.toString();
+    }
+
+    public boolean match(String S, int i, int j, String T) {
+        for (int k = i; k < j; ++k)
+            if (k >= S.length() || S.charAt(k) != T.charAt(k-i))
+                return false;
+        return true;
+    }
+}
