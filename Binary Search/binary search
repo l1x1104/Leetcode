@@ -77,3 +77,6 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
       
       ----------- 结束线 --------------
   
+      array要 sorted，因为你在if(O(1))的时间复杂度里要决定往左还是往右，You cut the time complexity to half in this way.
+      
+      
