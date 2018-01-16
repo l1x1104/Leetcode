@@ -29,6 +29,7 @@ https://discuss.leetcode.com/topic/116291/java-clean-code-merging-interval-solut
 class Solution {
     
     public String boldWords(String[] words, String S) {
-          int
+          int n = S.length();
+          
     }
  }
