@@ -71,7 +71,9 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
       
       然后接下去考虑左右指针极值就可以了.
       比如你condition是left < right, 终止时刻left = right, 而right起始值就是length - 1，如果要返回一个Length值，怎么可能？
-      再比如condition是left <= right,终止时刻left > right，如果你要返回的点是第一个怎么办？
+      再比如condition是left <= right,终止时刻left > right，如果你要返回的点是第一个怎么办？ 计算mid表达式靠左，所以很可能出现 left == right
+      (right = mid;)的情况，由于condition是left <= right，很容易死循环，所以加上right = mid - 1;这样造成左指针在右指针右边(left > right)程
+      序跳出，就能得到Index = 0的正确结果啦.
       
       ----------- 结束线 --------------
   
