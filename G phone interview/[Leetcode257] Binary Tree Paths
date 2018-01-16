@@ -34,3 +34,5 @@ class Solution {
         helper(root.right, sb, res);
     }
 }
+
+※ 用StringBuilder不占用栈空间，String全部是final static的，实际应用内存占用太多.
