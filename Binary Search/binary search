@@ -69,5 +69,9 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
       就是死循环.
       
       
+      然后接下去考虑左右指针极值就可以了.
+      比如你condition是left < right, 终止时刻left = right, 而right起始值就是length - 1，如果要返回一个Length值，怎么可能？
+      再比如condition是left <= right,终止时刻left > right，如果你要返回的点是第一个怎么办？
       
+      ----------- 结束线 --------------
   
