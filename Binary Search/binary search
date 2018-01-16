@@ -61,7 +61,7 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
       
       或者说, 这种写法因为终止条件是left > right, 所以left起始值是0，最小只能是1, 如果target = 0, 它要insert的点是index = 0, 也会死循环.
       这种写法很容易造成left == right的时候，因为你表达式里right = mid，所以target = 2 正好小于nums[1] = 3，这样right还是被赋值为1，造成
-      死循环. 改进办法就是 left = mid - 1.
+      死循环. 改进办法就是写成 left = mid - 1.
   
       
       
