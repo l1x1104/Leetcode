@@ -1,4 +1,4 @@
-<pre><code>
+```java
 class Solution {
     public int findMin(int[] nums) {
         int start = 0,  end = nums.length - 1;
@@ -11,4 +11,4 @@ class Solution {
         return nums[start];
     }
 }
-</code></pre>
+```
