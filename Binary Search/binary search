@@ -80,3 +80,12 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
       array要 sorted，因为你在if(O(1))的时间复杂度里要决定往左还是往右，You cut the time complexity to half in this way.
       
       
+      ----------- 开始线 --------------
+      
+      34. Search for a Range
+        · 我先选择了left < right这个作为bs模板
+        
+      
+      
+      
+      
