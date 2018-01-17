@@ -11,10 +11,15 @@ class Solution {
     public int findMin(int[] nums) {
         int start = 0,  end = nums.length - 1;
         while (start < end) {
-            if (nums[start] < nums[end]) return nums[start];
+            if (nums[start] < nums[end]) {
+                return nums[start];
+            }
             int mid = start + (end - start) / 2;
-            if (nums[mid] < nums[end]) end = mid;
-            else start = mid + 1;
+            if (nums[mid] < nums[end]) {
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
         }
         return nums[start];
     }
@@ -23,12 +28,13 @@ class Solution {
 
 
 ### 这题容易错的地方:
-if (nums[mid] < nums[left]) left = mid + 1;
+if (nums[mid] < nums[left]) left = mid + 1; <br>
     case [3,1,2]
     Your answer
           2
     Expected answer
           1
+<br>
 为什么漏掉了？
 
 [3, 1, 2] -> [2]
