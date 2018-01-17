@@ -157,3 +157,41 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
     进一步考虑 如果nums只有一个数，且nums等于或者不等于target的情况. 
 
     最后， 注意LeftBound 不能等于 rightBound
+    
+    
+    class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        if (nums.length == 0 || nums == null) return new int[]{-1, -1};
+        int[] res = new int[2];
+        
+        // left bound;
+        int leftBound = binarySearch(target, nums);  
+        if (leftBound == nums.length || nums[0] > target) {
+            return new int[]{-1, -1};
+        } else {
+            res[0] = leftBound;
+        }
+        
+        // right bound;
+        int rightBound = binarySearch(target + 1, nums); 
+        if (rightBound == res[0]) {
+            return new int[]{-1, -1}; 
+        }
+        res[1] = rightBound - 1;
+        
+        return res;   
+    }
+    
+    private int binarySearch(int target, int[] nums) {
+        int left = 0, right = nums.length, mid;
+        while (left < right) {
+            mid = left + (right - left) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left; // left有两种可能
+    }
+}
