@@ -19,3 +19,11 @@ class Solution {
     }
 }
 
+这题容易错的地方:
+if (nums[mid] < nums[left]) left = mid + 1;
+    case [3,1,2]
+    Your answer
+          2
+    Expected answer
+          1
+为什么漏掉了？
