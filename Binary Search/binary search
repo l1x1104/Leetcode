@@ -146,5 +146,7 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
         return left; 
     }
    left有两种可能：1. left == 0  2. left == nums.length
-                 2肯定是没找到的，但1 有可能是你要找的数，也有可能index = 0这个点插入. 
+                 2肯定是没找到的，但1 有可能是你要找的数，也有可能index = 0这个点插入. 可以表达成 target < nums[left](target比所有数都小)
+                  或者直接 left == 0 && target != nums[left].
+                  
       
