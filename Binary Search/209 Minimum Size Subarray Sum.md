@@ -5,9 +5,9 @@ sum ≥ s. If there isn't one, return 0 instead.
 For example, given the array [2,3,1,2,4,3] and s = 7,
 the subarray [4,3] has the minimal length under the problem constraint.
 
-# 方法：Two pointers：一个记录连续的开始，一个往前走直到连续区间尾。 consecutive可以连续减，也可连续加。
+### 方法：Two pointers：一个记录连续的开始，一个往前走直到连续区间尾。 consecutive可以连续减，也可连续加。
      
-# 1 Two Pointers - O(n)
+### 1 Two Pointers - O(n)
 ```java
 class Solution {
     public int minSubArrayLen(int s, int[] a) {
@@ -24,7 +24,7 @@ class Solution {
 }
 ```
 
-# 2 Binary Search - O(nlogn)
+### 2 Binary Search - O(nlogn)
 ```java
 public class Solution {
     public int minSubArrayLen(int s, int[] nums) {
