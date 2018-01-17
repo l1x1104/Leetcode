@@ -22,7 +22,7 @@ class Solution {
 ```
 
 
-## 这题容易错的地方:
+# 这题容易错的地方:
 if (nums[mid] < nums[left]) left = mid + 1;
     case [3,1,2]
     Your answer
