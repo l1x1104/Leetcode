@@ -19,6 +19,8 @@ class Solution {
     }
 }
 
+---------------- 分割线 ----------------
+
 这题容易错的地方:
 if (nums[mid] < nums[left]) left = mid + 1;
     case [3,1,2]
@@ -27,3 +29,12 @@ if (nums[mid] < nums[left]) left = mid + 1;
     Expected answer
           1
 为什么漏掉了？
+
+[3, 1, 2] -> [2]
+
+实际我们想这样变:
+[3, 1, 2] -> [1, 2] nums[left] < nums[right] return nums[left]
+
+怎么改？
+if (nums[mid] < nums[right]) right = mid;
+正因为right = mid这样写，所以把当前right这个点也囊括进去，不想left = mid + 1, 直接跳过 left这个点.
