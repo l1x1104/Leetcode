@@ -45,10 +45,10 @@ class Solution {
     }
     private int countNum(int r, int c, int target) {
         int count = 0;
-	    for (int i = 1; i <= r; i++) {
-	        int temp = Math.min(target / i , c);
-	        count += temp;
-	    }
-	    return count;
+	for (int i = 1; i <= r; i++) {
+	    int temp = Math.min(target / i , c);
+	    count += temp;
+	}
+        return count;
     }
 }
