@@ -198,4 +198,29 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
 
 
 
-最后
+最后LINE 169 改成 if (leftBound == nums.length || nums[leftBound] != target) 就是说只要找不到，就直接返回[-1, -1]，不用管后面了.
+其实不关右边界事，后面不用比较左边界是否在右边界左边.
+最终版:
+
+class Solution {
+    public int[] searchRange(int[] A, int target) {
+        int n = A.length;
+        int left = binarySearch(A, target);
+        if (left == n || A[left] != target) return new int[]{-1, -1};
+        int right =  binarySearch(A, target  + 1);
+        return new int[]{left, right - 1};   
+    }
+    
+    private int binarySearch (int[] num, int target) {
+        int l = 0, r = num.length;
+        while (l < r) {
+            int mid = l + ((r - l) >> 1);
+            if (num[mid] < target) {
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+        return l;
+    }
+}
