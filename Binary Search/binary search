@@ -145,9 +145,15 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
         }
         return left; 
     }
-   left有两种可能：1. left == 0  2. left == nums.length
-                 2肯定是没找到的，但1 有可能是你要找的数，也有可能index = 0这个点插入. 可以表达成 target < nums[left](target比所有数都小)
+   left有两种可能：1) left == 0  2) left == nums.length
+                 2 肯定是没找到的，但1 有可能是你要找的数，也有可能index = 0这个点插入. 可以表达成 target < nums[left](target比所有数都小)
                   或者直接 left == 0 && target != nums[left], 进一步写成 nums[0] > target
                   
+                  
+   ※ 这道题还有一个特别考究的地方: 原先if语句有一个等于的情况，这里直接break? 注意，不行🚫！ 你要找到第一个，第一个，第一个，[1,2,2,3]你要返回index
+     等于1而不是2, 所以即使等于，我们也把right = mid, 所以即使数组有duplicate, 这样写我们也能保证找到的是第一个insert point.
+                  
       
-    进一步考虑 如果nums只有一个数，且nums等于或者不等于target的情况.
+    进一步考虑 如果nums只有一个数，且nums等于或者不等于target的情况. 
+
+    最后
