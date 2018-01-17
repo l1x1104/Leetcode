@@ -156,4 +156,4 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
       
     进一步考虑 如果nums只有一个数，且nums等于或者不等于target的情况. 
 
-    最后
+    最后， 注意LeftBound 不能等于 rightBound
