@@ -28,8 +28,8 @@ class Solution {
         return nums[l];
     }
 }
-TEST Example: [1,3,3]
-              [3,3]
+
+※ 这题考虑Case [3,3,1,3] 就行了
               
 这样写也对.注意 nums[mid]与nums[r]相等，要又指针向左移("r--")，因为你要求的是最小值，偏左.
 class Solution {
