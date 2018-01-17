@@ -1,3 +1,3 @@
 # Leetcode
 
-<h1 align="center">Tech Interview Handbook</h1>
+<h1 align="center">Interview Preparation</h1>
