@@ -57,4 +57,5 @@ public class Solution {
  }
 ```
 - - -
-### 骚操作
+### 骚操作 - 如何快速找到sum >= s的连续区间？
+
