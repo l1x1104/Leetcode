@@ -150,3 +150,4 @@ Java Search Algos : http://www.java2novice.com/java-search-algorithms/
                   或者直接 left == 0 && target != nums[left], 进一步写成 nums[0] > target
                   
       
+    进一步考虑 如果nums只有一个数，且nums等于或者不等于target的情况.
