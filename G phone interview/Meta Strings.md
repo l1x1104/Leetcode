@@ -3,13 +3,13 @@
 
 * Examples: <br>
   Input : str1 = "geeks" <br>
-          str2 = "keegs" <br>
+  &#8194; &#8194; &#8194;&#8194;str2 = "keegs" <br>
   Output : Yes <br>
   By just swapping 'k' and 'g' in any of string, both will become same.
   
  * Examples: <br>
   Input : str1 = "rsting" <br>
-  &#8194; &#8194; &#8194;&#8194;&#8194;str2 = "string  <br>
+  &#8194; &#8194; &#8194;&#8194;str2 = "string  <br>
   Output : No
   
 ##### Algorithm
