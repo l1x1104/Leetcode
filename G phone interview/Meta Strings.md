@@ -11,11 +11,11 @@
           str2 = "string  <br>
   Output : No
   
-##### Algorithm:
+##### Algorithm
 - Check if both strings are of equal length or not, if not return false.
-- start comparing, count number of unmatched characters and also store the index of unmatched characters.
+- Start comparing, count number of unmatched characters and also store the index of unmatched characters.
 - If unmatched characters are more than 2 then return false.
-- check if on swapping any of these two characters in any string would make the string equal or not.
+- Check if on swapping any of these two characters in any string would make the string equal or not.
 - If yes then return true. Otherwise return false.
 
 ```java
