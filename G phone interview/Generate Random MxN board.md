@@ -1,6 +1,9 @@
 ***
 #### Generate a random MxN starting board. It cannot have 3 or more pieces in a row (horizontally or vertically) of the same color. K colors.
 
+##### Algorithm:
+- 这个题看起来根本不需要back tracking， 枚举每一个位置的时候你有k个color可以选择，如果上面两个是一样的，那么k个color要删除这个颜色，如果左面两个color是一样的，你要删除这个颜色，剩下的颜色你都可以用.
+
 ```java
     public int[][] kColorBoard(int m, int n, int k) {
         int[][] res = new int[m][n];
