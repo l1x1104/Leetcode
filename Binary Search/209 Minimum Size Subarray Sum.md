@@ -70,7 +70,7 @@ index 0 1 2 3 4 5  6 <br>
      i = 3, target = 13, index = 6 . i = 4, target = 15, index = 6. 从原数组中可以看到index 3-5 和 4-5和都大于等于7.
      程序实现如下: 
      
-     ```java
+```java
      for (int z = 0; z < cache.length; z++) {
             int index = binarySearch(z + 1, cache[z] + s, cache);
             if (index == cache.length) break;
@@ -78,4 +78,4 @@ index 0 1 2 3 4 5  6 <br>
                 len = Math.min(index - z, len);
             }
         } 
-     ```
+```
