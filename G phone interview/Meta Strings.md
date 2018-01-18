@@ -7,7 +7,7 @@
   Output : Yes <br>
   By just swapping 'k' and 'g' in any of string, both will become same.
   
-* Examples: <br>
+> * Examples: <br>
 >  Input : str1 = "rsting" <br>
 >          str2 = "string  <br>
 >  Output : No
