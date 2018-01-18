@@ -5,12 +5,12 @@
           str2 = "keegs" <br>
   Output : Yes <br>
   By just swapping 'k' and 'g' in any of string, both will become same.
-  
+  <a>
 * Examples: <br>
   Input : str1 = "rsting" <br>
           str2 = "string  <br>
   Output : No
-  
+  </a>
 ##### Algorithm
 - Check if both strings are of equal length or not, if not return false.
 - Start comparing, count number of unmatched characters and also store the index of unmatched characters.
