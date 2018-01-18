@@ -40,9 +40,9 @@ private boolean areMetaString(String str1, String str2) {
 #### FOLLOW UP 两个string，求问能否通过n次swap互相转换，假设swap之间不重合。(str[0] <->str[2] 以后 str[2]和str[0]就不会和其他位置swap)
 ##### Algorithm
 - 用hash table + two pointer。对于每个index，如果char一样就跳过，不match就把"str2->str1" 存到hash table里，表示有candidate swap，下一次看  到不match的char，就看"str1->str2" 在不在hash里
-<br> </br>
+
 方法就是构建一个String, 存到HashTable里面. 代码类似下面:
-···java
+```java
   ...
   String str = p[0] + "a" + p[1];
   set.add(str);
