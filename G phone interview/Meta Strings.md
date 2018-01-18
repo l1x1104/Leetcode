@@ -11,7 +11,7 @@
           str2 = "string  <br>
   Output : No
   
-* Algorithm:
+###### Algorithm:
 - Check if both strings are of equal length or not, if not return false.
 - start comparing, count number of unmatched characters and also store the index of unmatched characters.
 - If unmatched characters are more than 2 then return false.
