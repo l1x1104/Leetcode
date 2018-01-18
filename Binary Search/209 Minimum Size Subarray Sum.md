@@ -67,18 +67,15 @@ index 0 1 2 3 4 5  6 <br>
      [0,2,5,6,8,12,15] <br>
      
      从index = i开始连续几个数以后大于7？ 用bs在新数组nums里面找target(target == (nums[index] + s)). 比如i = 0, target = 7. <br>
-     i = 3, target = 13, index = 6 . i = 4, target = 15, index = 6. 从原数组中可以看到index 3~5 和 4~5和都大于等于7.
+     i = 3, target = 13, index = 6 . i = 4, target = 15, index = 6. 从原数组中可以看到index 3-5 和 4-5和都大于等于7.
      程序实现如下: 
      
      ```java
      for (int z = 0; z < cache.length; z++) {
             int index = binarySearch(z + 1, cache[z] + s, cache);
-            //System.out.println(" return index: " + index);
             if (index == cache.length) break;
             else {
                 len = Math.min(index - z, len);
-                //System.out.println(" start: " + z + ", target : " + (cache[z] + s) + ", len:" + len);
-                //System.out.println("--------");
             }
         } 
      ```
