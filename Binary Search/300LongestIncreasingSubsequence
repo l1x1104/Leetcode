@@ -51,3 +51,5 @@ class Solution {
 }
 
 To go to Leetcode discussion for more detail explanation
+用这条语句看到清晰的规律
+System.out.println(" number: " + num + ", tail[i]: " + tails[i] + ",  i = " + i + ", len = " + res);
