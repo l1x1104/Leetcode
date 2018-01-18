@@ -8,9 +8,9 @@
   By just swapping 'k' and 'g' in any of string, both will become same.
   
 > * Examples: <br>
->  Input : str1 = "rsting" <br>
->          str2 = "string  <br>
->  Output : No
+  Input : str1 = "rsting" <br>
+&ensp          str2 = "string  <br>
+  Output : No
   
 ##### Algorithm
 - Check if both strings are of equal length or not, if not return false.
