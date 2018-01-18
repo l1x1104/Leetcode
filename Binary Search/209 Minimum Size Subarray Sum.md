@@ -68,9 +68,8 @@ index 0 1 2 3 4 5  6 <br>
      
      从index = i开始连续几个数以后大于7？ 用bs在新数组nums里面找target(target == (nums[index] + s)). 比如i = 0, target = 7. <br>
      i = 3, target = 13, index = 6 . i = 4, target = 15, index = 6. 从原数组中可以看到index 3~5 和 4~5和都大于等于7.
-     程序实现如下：
+     程序实现如下: <br>
      ```java
-     
      private int minSubArrayLen(int s, int[] nums) {
           int[] cache = new int[nums.length + 1];
           for (int i = 1; i < cache.length; i++) {
