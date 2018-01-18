@@ -41,4 +41,17 @@ private boolean areMetaString(String str1, String str2) {
 ##### Algorithm
 - 用hash table + two pointer。对于每个index，如果char一样就跳过，不match就把"str2->str1" 存到hash table里，表示有candidate swap，下一次看  到不match的char，就看"str1->str2" 在不在hash里
 <br> </br>
-方法就是构建一个String, 存到HashTable里面. 代码类似
+方法就是构建一个String, 存到HashTable里面. 代码类似下面:
+···java
+  ...
+  String str = p[0] + "a" + p[1];
+  set.add(str);
+  ...
+  for(int[] p:points){
+        String str = (sum-p[0]) + "a" + p[1];
+        if( !set.contains(str))
+            return false;
+        
+   }
+```
+
