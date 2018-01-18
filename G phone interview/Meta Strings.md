@@ -9,7 +9,7 @@
   
  * Examples: <br>
   Input : str1 = "rsting" <br>
-&ensp          str2 = "string  <br>
+&nbsp          str2 = "string  <br>
   Output : No
   
 ##### Algorithm
