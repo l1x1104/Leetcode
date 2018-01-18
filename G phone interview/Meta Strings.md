@@ -9,7 +9,7 @@
   
  * Examples: <br>
   Input : str1 = "rsting" <br>
-  &#8194; str2 = "string  <br>
+  &#8194; &#8194; &#8194;str2 = "string  <br>
   Output : No
   
 ##### Algorithm
