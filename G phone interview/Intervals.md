@@ -17,6 +17,7 @@ end:   2, 4, 5, 7, 8
 5: [2,6][5,8]  2 + 1 - 1    5
 6: [5,8][6,7]  2 + 1 - 1    7
 
+```java
 private Interval findIntervals(double target, Interval[] intervals) {
     if (intervals == null || intervals.length == 0) {
         return null;
@@ -59,3 +60,4 @@ private int binarySearch(Interval[] intervals, int target) {
     }
     return left;
 }
+```
