@@ -7,7 +7,7 @@
 1. 下一个数的坐标(row - 1, column + 1). 如果row == -1, 置为最底下一层. column == n.length，归为0.
 2. 如果走到的地方已经有数存在，column -= 2 && row += 1.
 3. 如果走到最右上角, (row == -1 && column == n)，坐标为(0, n - 2);
-<br>
+
 ```java
 public void generateSquare(int n) {
     int[][] magicSquare = new int[n][n];
