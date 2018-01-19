@@ -112,3 +112,24 @@ Traverse and record the maximum number.
         return max;     
     }
 ```
+```java
+    public int minMeetingRooms(Interval[] intervals) {
+        if(intervals.length == 0) return 0;
+        int maxtime = Integer.MIN_VALUE;
+        //Find max meeting time
+        for(int i = 0; i < intervals.length; i++){
+            maxtime = Math.max(maxtime, intervals[i].end);
+        }
+        int[] cont = new int[maxtime+1];
+        for(int i = 0; i < intervals.length; i++){
+            cont[intervals[i].start]++;
+            cont[intervals[i].end]--;
+        }
+        int res = 0;
+        for(int i = 1; i <= maxtime; i++){
+            cont[i] += cont[i-1];
+            res = Math.max(res, cont[i]);
+        }
+        return res;
+    }
+```
