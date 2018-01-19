@@ -14,8 +14,8 @@ end:   2, 4, 5, 7, 8 <br>
 2: [2,6]       1 + 1 - 1    4
 3: [2,6][3,4]  1 + 1        4
 5: [2,6][5,8]  2 + 1 - 1    5
-6: [5,8][6,7]  2 + 1 - 1    7
-
+6: [5,8][6,7]  2 + 1 - 1    7
+你需要记录在每一个start point(以这个start作为target)对应的list, 这是预处理. 用bs找target对应的list，这是search，用时logN. 面试官要求优化这部分.
 ```java
 private Interval findIntervals(double target, Interval[] intervals) {
     if (intervals == null || intervals.length == 0) {
