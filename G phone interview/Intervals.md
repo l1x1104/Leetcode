@@ -5,11 +5,11 @@
 大致思路是，按照区间左端点做sorting，然后binary search.
 
         
-input: [1,2][2,6][3,4][5,8][6,7] target = 5
-Expected: [2,6][5,8]
-
-start: 1, 2, 3, 5, 6
-end:   2, 4, 5, 7, 8
+input: [1,2][2,6][3,4][5,8][6,7] target = 5 <br>
+Expected: [2,6][5,8] <br>
+<br></br>
+start: 1, 2, 3, 5, 6 <br>
+end:   2, 4, 5, 7, 8 <br>
 
 1: [1,2]       1            2
 2: [2,6]       1 + 1 - 1    4
