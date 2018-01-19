@@ -7,7 +7,6 @@
         
 input: [1,2][2,6][3,4][5,8][6,7] target = 5 <br>
 Expected: [2,6][5,8] <br>
-<br></br>
 start: 1, 2, 3, 5, 6 <br>
 end:   2, 4, 5, 7, 8 <br>
 
