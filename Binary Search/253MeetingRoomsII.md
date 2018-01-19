@@ -38,20 +38,24 @@ public int minMeetingRooms(Interval[] intervals) {
         
     // Sort the intervals by start time
     Arrays.sort(intervals, new Comparator<Interval>() {
-        public int compare(Interval a, Interval b) { return a.start - b.start; }
+        public int compare(Interval a, Interval b) { 
+            return a.start - b.start; 
+        }
     });
     
     // Use a min heap to track the minimum end time of merged intervals
-    PriorityQueue<Interval> heap = new PriorityQueue<Interval>(intervals.length, new Comparator<Interval>() {
-        public int compare(Interval a, Interval b) { return a.end - b.end; }
+    PriorityQueue<Interval> pq = new PriorityQueue<Interval>(intervals.length, new Comparator<Interval>() {
+        public int compare(Interval a, Interval b) { 
+            return a.end - b.end; 
+        }
     });
     
     // start with the first meeting, put it to a meeting room
-    heap.offer(intervals[0]);
+    pq.offer(intervals[0]);
     
     for (int i = 1; i < intervals.length; i++) {
         // get the meeting room that finishes earliest
-        Interval interval = heap.poll();
+        Interval interval = pq.poll();
         
         if (intervals[i].start >= interval.end) {
             // if the current meeting starts right after 
@@ -59,13 +63,52 @@ public int minMeetingRooms(Interval[] intervals) {
             interval.end = intervals[i].end;
         } else {
             // otherwise, this meeting needs a new room
-            heap.offer(intervals[i]);
+            pq.offer(intervals[i]);
         }
         
         // don't forget to put the meeting room back
-        heap.offer(interval);
+        pq.offer(interval);
     }
     
-    return heap.size();
+    return pq.size();
 }
+```
+
+##### Solution 3 - O(n) 
+If we draw a vertical line in time point, "-1" when meet the begin point, "+1" when meet the end point.
+Traverse and record the maximum number.
+```java
+    public int minMeetingRooms(Interval[] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return 0;
+        }
+        
+        Arrays.sort(intervals, new Comparator<Interval>() {
+            public int compare(Interval a, Interval b) { 
+                return a.start - b.start; 
+            }
+        });
+        PriorityQueue<Interval> pq = new PriorityQueue<Interval>(intervals.length, new Comparator<Interval>() {
+            public int compare(Interval a, Interval b) { 
+                return a.end - b.end; 
+            }
+        });
+        for(Interval i: intervals) {
+            pq.offer(i);
+        }
+        
+        int rooms = 0, max = Integer.MIN_VALUE;
+        for (int t = 0; t < intervals.length; t++) {
+            Interval curr = pq.peek();
+            rooms ++;
+            if (intervals[t].start < curr.end) {
+                max = Math.max(rooms, max);
+            } else {
+                rooms --;
+                pq.poll();
+            }
+        }
+        
+        return max;     
+    }
 ```
