@@ -77,7 +77,7 @@ private List<Interval> findIntervals(double target, Interval[] intervals) {
     List<Interval> result = res.get(target);
     return result;
 }
-private int binarySearch(Interval[] intervals, int target) {   // Binary Search格式
+private int binarySearch(Interval[] intervals, int target) {   // Binary Search格式不改了，就意思一下
     int left = 0, right = intervals.length;
     while (left < right) {
         int mid = left + (right - left) / 2;
