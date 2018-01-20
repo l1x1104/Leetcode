@@ -9,6 +9,7 @@
 class Solution {
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
+        
         Stack<TreeNode> st = new Stack<>();
         Stack<Integer> sv = new Stack<>();
         st.push(root);
@@ -34,26 +35,28 @@ class Solution {
 ```
 * BFS
 ```java
-public int maxDepth(TreeNode root) {
-    if(root == null) {
-        return 0;
-    }
-    Queue<TreeNode> queue = new LinkedList<>();
-    queue.offer(root);
-    int count = 0;
-    while(!queue.isEmpty()) {
-        int size = queue.size();
-        while(size-- > 0) {
-            TreeNode node = queue.poll();
-            if(node.left != null) {
-                queue.offer(node.left);
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        int count = 0;
+        while (!q.isEmpty()) {
+            int size = q.size();
+            while (size > 0) {
+                TreeNode curr = q.poll();
+                if (curr.left != null) {
+                    q.offer(curr.left);
+                }
+                if (curr.right != null) {
+                    q.offer(curr.right);
+                }
+                size --;
             }
-            if(node.right != null) {
-                queue.offer(node.right);
-            }
+            count ++;
         }
-        count++;
+        return count;
     }
-    return count;
 }
 ```
