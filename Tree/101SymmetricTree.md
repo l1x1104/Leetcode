@@ -17,7 +17,7 @@ class Solution {
     }
 }
 ```
-* Solution 2 - 迭代
+* Solution 2 - 迭代 <br>
 两种方法：<br>
 1. 一个queue，分别加左右孩子. 如果同时为null, continue; "||" -> false, value不相等 -> false. 最后添加左左，右右，左右，右左. <br>
 2. 一个stack ... 1. size是奇数肯定false. 2. 每次两个节点一组push到stack. <br>
