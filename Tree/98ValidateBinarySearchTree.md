@@ -22,6 +22,7 @@
 ```
     
 * Solution 2 - Recursive
+recursively iterating over the tree while defining interval <minVal, maxVal> for each node which value must fit in.
 ```java
 public boolean isValidBST(TreeNode root) {
     return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
