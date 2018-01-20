@@ -6,30 +6,30 @@
 ##### This is the iterative version of finding the depth. The recursive version is trivial, so expect the interviewer to ask for the iterative version. I used two stacks for the dfs one and a queue for the level-order traversal one. Level order one is faster.
 * DFS
 ```java
-public int maxDepth(TreeNode root) {
-    if(root == null) {
-        return 0;
-    }
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        Stack<TreeNode> st = new Stack<>();
+        Stack<Integer> sv = new Stack<>();
+        st.push(root);
+        sv.push(1);
+        int max = 0;
     
-    Stack<TreeNode> stack = new Stack<>();
-    Stack<Integer> value = new Stack<>();
-    stack.push(root);
-    value.push(1);
-    int max = 0;
-    while(!stack.isEmpty()) {
-        TreeNode node = stack.pop();
-        int temp = value.pop();
-        max = Math.max(temp, max);
-        if(node.left != null) {
-            stack.push(node.left);
-            value.push(temp+1);
+        while (!st.isEmpty()) {
+            TreeNode curr = st.pop();
+            int temp = sv.pop();
+            max = Math.max(temp, max);
+            if (curr.left != null) {
+                st.push(curr.left);
+                sv.push(temp + 1);
+            }
+            if (curr.right != null) {
+                st.push(curr.right);
+                sv.push(temp + 1);
+            }       
         }
-        if(node.right != null) {
-            stack.push(node.right);
-            value.push(temp+1);
-        }
+        return max;
     }
-    return max;
 }
 ```
 * BFS
