@@ -79,3 +79,32 @@ class Solution {
     }
 }
 ```
+上面iterative的方法改了一下
+```java
+class Solution {
+    public int minDepth(TreeNode root) {
+        if (root == null) return 0;
+        
+        Stack<TreeNode> st = new Stack<>();
+        Stack<Integer> sv = new Stack<>();
+        st.push(root);
+        sv.push(1);
+        int min = Integer.MAX_VALUE;
+    
+        while (!st.isEmpty()) {
+            TreeNode curr = st.pop();
+            int temp = sv.pop();
+            if (curr.left == null && curr.right == null) min = Math.min(temp, min);
+            if (curr.left != null) {
+                st.push(curr.left);
+                sv.push(temp + 1);
+            }
+            if (curr.right != null) {
+                st.push(curr.right);
+                sv.push(temp + 1);
+            }       
+        }
+        return min == Integer.MAX_VALUE? 1 : min;
+    }
+}
+```
