@@ -60,3 +60,22 @@ class Solution {
     }
 }
 ```
+
+***
+* 最短路径？难点在于，末节点返回值和普通节点左/右节点返回值要区分开来.
+```java
+class Solution {
+    public int minDepth(TreeNode root) {
+        if(root == null) return 0;
+        
+        if(root.left == null && root.right == null) {
+            return 1;
+        } else if(root.left == null || root.right == null) {
+            if(root.left != null) return 1 + minDepth(root.left);
+            if(root.right != null) return 1 + minDepth(root.right);
+        }
+        
+        return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+    }
+}
+```
