@@ -26,6 +26,7 @@ public class Solution {
     }
 }
 ```
+Solution 2 - Recursive(preorder)
 ```java
 public void connect(TreeLinkNode root) {
     if(root == null)
