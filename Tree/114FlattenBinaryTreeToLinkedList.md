@@ -12,6 +12,7 @@ public void flatten(TreeNode root) {
     prev = root;
 }
 ```
+* Iterative
 ```java
 public class Solution {
     public void flatten(TreeNode root) {
