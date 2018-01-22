@@ -1,0 +1,18 @@
+class Solution {
+    private boolean res = false;
+    
+    public boolean findTarget(TreeNode root, int k) {
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        helper(root, k, mp);
+        return res;
+    }
+    public void helper(TreeNode root, int k, HashMap<Integer, Integer> mp) {
+        if(root == null) {
+            return;
+        }
+        if(!mp.containsKey(k - root.val)) mp.put(root.val, 1);
+        else res = true;
+        helper(root.left, k, mp);
+        helper(root.right, k, mp);
+    }
+}
