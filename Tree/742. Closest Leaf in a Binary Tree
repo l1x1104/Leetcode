@@ -115,4 +115,7 @@
  
  Next...
  
-从
+从上至下，注意看到其实是个pre-order,对root 1来说此时存储的Best:<TreeNode(3), 1>. 把这个bestAbove信息继续向下传递: 对左子树2来说，它会比较
+bestAbove的distance which is 1 and compare it with TreeNode(2) which is 3, so we update it to Cell:<TreeNode(3), 1>.
+
+最后的最后，由于每一个节点值都是unique的，所以只要我们在map里面直接get这个node对应的Cell,Cell的val就是对应末节点.
