@@ -60,7 +60,6 @@
   class Solution {
     public int largestBSTSubtree(TreeNode root) {
         if(root == null) return 0;  
-        int[] count = new int[1];
         if(isValid(root, Integer.MIN_VALUE, Integer.MAX_VALUE)) return countNodes(root);
         return Math.max(largestBSTSubtree(root.left), largestBSTSubtree(root.right));
     }
