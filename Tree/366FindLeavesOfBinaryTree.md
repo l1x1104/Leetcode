@@ -17,6 +17,7 @@
  Note: Recursive solution is trivial, could you do it iteratively?
  Solution: 1. Recursive solution.      Time: O(2n), Space: O(n).
  */
+ ```java
  class Solution {
     public List<List<Integer>> findLeaves(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
@@ -45,3 +46,5 @@
         tmp.add(root.val);
     }
   }
+  ```
+  这题的解释非常棒 https://discuss.leetcode.com/topic/49194/10-lines-simple-java-solution-using-recursion-with-explanation
