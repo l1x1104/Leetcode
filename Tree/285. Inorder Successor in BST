@@ -20,6 +20,31 @@ Successor
       return next;
   }
   
+#2 Recursive
+class Solution {
+    private boolean next = false;
+    private TreeNode[] res = new TreeNode[1];
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        // 1. Find the node p
+        // 2. Find the next node
+        inOrderTraversal(root, p);
+        return res[0];
+    }
+    private void inOrderTraversal(TreeNode root, TreeNode p) {
+        if (root == null) {
+            return ;
+        }
+        inOrderTraversal(root.left, p);
+        if (root.val == p.val) {
+            next = true;
+        } else if (next) {
+            res[0] = root;
+            next = false;
+        }
+        inOrderTraversal(root.right, p);
+    }
+}
+  
 Predecessor
   public TreeNode predecessor(TreeNode root, TreeNode p) {
       if(root == null) return null;
