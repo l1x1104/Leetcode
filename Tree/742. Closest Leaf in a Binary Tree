@@ -110,5 +110,9 @@
  
  1. 能做到bottom up的方法有post-order, pre-order是从上至下-topDown.
  2. 主要算法: 先从下至上每一个node改成用Cell记录，Cell的val记录着左/右末节点的值, dis记录着左/右节点到末节点的最短距离.
- 3. 用一个Map记录
-
+ 3. 用一个Map记录,从下到上,一脉相承. Map: <Key: current node val, value: Cell>
+ 综上，从下至上，我们用map得到了一个“新”tree, 这个tree包含着更丰富的信息.
+ 
+ Next...
+ 
+从
