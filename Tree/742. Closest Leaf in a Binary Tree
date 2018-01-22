@@ -107,3 +107,7 @@
         }
     }
  }
+ 
+ 1. 能做到bottom up的方法有post-order, pre-order是从上至下-topDown.
+ 2. 主要算法: 先从下至上每一个node改成用Cell记录，Cell的val记录着左/右末节点的值, dis记录着左/右节点到末节点的最短距离.
+ 3. 用
