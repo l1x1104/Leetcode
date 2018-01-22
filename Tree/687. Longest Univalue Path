@@ -19,3 +19,19 @@ class Solution {
         return Math.max(left, right) + 1;
     }
 }
+
+Note:
+              5
+             / \
+            4   5
+           / \   \
+          1   1   5
+
+System.out.println("left:" + left + ", right:" + right + ", root= " + root.val + ", prev value:" + val);
+Your stdout:
+left:0, right:0, root= 1, prev value:4
+left:0, right:0, root= 1, prev value:4
+left:0, right:0, root= 4, prev value:5
+left:0, right:0, root= 5, prev value:5
+left:1, right:0, root= 5, prev value:5
+left:0, right:2, root= 5, prev value:5
