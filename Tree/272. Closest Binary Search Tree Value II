@@ -1,1 +1,46 @@
 
+class Solution {
+    private int count = 0;
+    class Cell {
+        int val;
+        double dif;
+        public Cell(int data, double dif) {
+            this.val = data;
+            this.dif = dif;
+        }
+    }
+    public List<Integer> closestKValues(TreeNode root, double target, int k) {
+        count = k;
+        List<Integer> res = new LinkedList<>();
+        PriorityQueue<Cell> pq = new PriorityQueue<Cell>(k, new Comparator<Cell>(){
+            @Override
+            public int compare(Cell a, Cell b) {
+                return -Double.compare(a.dif, b.dif);
+            }
+        });
+        helper(root, target, pq);
+        for(Cell i: pq) {
+            res.add(i.val);
+        }
+        return res;
+    }
+    private void helper(TreeNode root, double target, PriorityQueue<Cell> pq) {
+        if(root == null) return ;
+        if(count > 0) {
+            Cell cell = new Cell(root.val, Math.abs(root.val - target));
+            pq.offer(cell);
+            count --;
+        }else {
+            double diff = Math.abs(root.val - target);
+            Cell tmpCell = pq.peek();
+            double temp = Math.abs(tmpCell.dif);
+            if(diff < temp) {
+                pq.poll();
+                pq.offer(new Cell(root.val, diff));
+            }
+        }
+       
+        helper(root.left, target, pq);
+        helper(root.right, target, pq);
+    }
+}
