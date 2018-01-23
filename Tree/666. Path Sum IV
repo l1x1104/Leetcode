@@ -54,3 +54,4 @@ class Solution {
         if(map.containsKey(right)) helper(right, curr, map);
     }
  }
+解释非常好 https://discuss.leetcode.com/topic/101111/java-solution-represent-tree-using-hashmap/6
