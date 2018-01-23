@@ -58,3 +58,6 @@ class Solution {
         return curr;
     }
  }
+
+注解: 1. Map记录了每一个节点左右子树+root.val的和,比如对于root, map存的key就是整颗树所有节点之和.
+     2. 能否被劈成两半? -> 能被2整除以及和的一半必须存在Map里面.
