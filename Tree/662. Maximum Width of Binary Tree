@@ -52,5 +52,5 @@ tree, the width is end[level] - start[level] + 1. Then, we just need to find the
         return Math.max(cur, Math.max(left, right));
     }
     
-    注释: 传入level为0作为初始值,通过判断list.size() ?= level来创建新一层，list 不同
+    注释: 传入level为0作为初始值,通过判断list.size() ?= level来创建新一层，list不同index对应tree的不同层.
       
