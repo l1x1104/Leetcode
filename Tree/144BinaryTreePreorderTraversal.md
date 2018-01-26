@@ -8,7 +8,7 @@ public class Solution {
         traverse(root, result);
         return result;
     }
-    // 把root为跟的preorder加入result里面
+    // 把root为根的preorder加入result里面
     private void traverse(TreeNode root, ArrayList<Integer> result) {
         if (root == null) {
             return;
