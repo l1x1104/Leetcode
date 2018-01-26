@@ -1,4 +1,4 @@
-[Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+[Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
 
 - Solution 1: Traverse
 ```java
