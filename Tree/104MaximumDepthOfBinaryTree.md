@@ -1,10 +1,54 @@
-***
-* 最长路径，一般没有大问题
+[Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
+
+- Solution 1 Traverse
 ```java
-略
+class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: An integer.
+     */
+    private int depth;
+    
+    public int maxDepth(TreeNode root) {
+        depth = 0;
+        helper(root, 1);
+        
+        return depth;
+    }
+    
+    private void helper(TreeNode node, int curtDepth) {
+        if (node == null) {
+            return;
+        }
+        
+        if (curtDepth > depth) {
+            depth = curtDepth;
+        }
+        
+        helper(node.left, curtDepth + 1);
+        helper(node.right, curtDepth + 1);
+    }
+}
 ```
+
+- Solution 2 Divide & Conquer
+```java
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        return Math.max(left, right) + 1;
+    }
+}
+
+```
+
 ##### This is the iterative version of finding the depth. The recursive version is trivial, so expect the interviewer to ask for the iterative version. I used two stacks for the dfs one and a queue for the level-order traversal one. Level order one is faster.
-* DFS
+- Solution 3 DFS
 ```java
 class Solution {
     public int maxDepth(TreeNode root) {
@@ -33,7 +77,7 @@ class Solution {
     }
 }
 ```
-* BFS
+- Solution 4 BFS
 ```java
 class Solution {
     public int maxDepth(TreeNode root) {
