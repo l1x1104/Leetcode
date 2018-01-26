@@ -1,37 +1,59 @@
-#1 Iterative Solution using Stack
-public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        Stack<TreeNode> s = new Stack<>();
-        if(root == null) {
-            return res;
-        }
-        s.push(root);   //没有第二选择，初始条件：s为空，root != null；而结束条件一样，无区分度。为了区分开，使其一成为终止条件，必须先push
-        while(!s.isEmpty()) {
-            TreeNode curr = s.pop();
-            res.add(0, curr.val);
-            if(curr.left != null) {
-                s.push(curr.left);
-            }
-            if(curr.right != null) {
-                s.push(curr.right);
-            }
-        }
-        return res;
-}
+[Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
 
-#2 Recursive Solution is trivial
-public List<Integer> postorderTraversal(TreeNode root) {
-    List<Integer> res = new ArrayList<>();
-    if(root == null) {
-        return res;
-    }
-    helper(root, res);
-    return res;
+- Solution 1: Traverse
+```java
+class Solution {
+        public List<Integer> postorderTraversal(TreeNode root) {
+                List<Integer> result = new ArrayList<Integer>();
+                Stack<TreeNode> stack = new Stack<TreeNode>();
+                TreeNode prev = null; // previously traversed node
+                TreeNode curr = root;
+
+                if (root == null) {
+                        return result;
+                }
+
+                stack.push(root);
+                while (!stack.empty()) {
+                        curr = stack.peek();
+                        if (prev == null || prev.left == curr || prev.right == curr) { // traverse down the tree
+                                if (curr.left != null) {
+                                        stack.push(curr.left);
+                                } else if (curr.right != null) {
+                                        stack.push(curr.right);
+                                }
+                        } else if (curr.left == prev) { // traverse up the tree from the left
+                                if (curr.right != null) {
+                                        stack.push(curr.right);
+                                }
+                        } else { // traverse up the tree from the right
+                                result.add(curr.val);
+                                stack.pop();
+                        }
+                        prev = curr;
+                }
+
+                return result;
+        }
 }
-public void helper(TreeNode root, List<Integer> res) {
-    if(root != null) {
-        helper(root.left, res);
-        helper(root.right, res);
-        res.add(root.val);
+```
+
+- Solution 2 Divide & Conquer
+```java
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
+
+        if (root == null) {
+                return result;
+        }
+
+        result.addAll(postorderTraversal(root.left));
+        result.addAll(postorderTraversal(root.right));
+        result.add(root.val);
+
+        return result;   
     }
 }
+```
+
