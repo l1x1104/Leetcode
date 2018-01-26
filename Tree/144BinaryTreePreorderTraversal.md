@@ -3,8 +3,8 @@
 - Solution 1: Traverse
 ```java
 public class Solution {
-    public ArrayList<Integer> preorderTraversal(TreeNode root) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
         traverse(root, result);
         return result;
     }
@@ -17,6 +17,30 @@ public class Solution {
         result.add(root.val);
         traverse(root.left, result);
         traverse(root.right, result);
+    }
+}
+```
+```java
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode curr = root;
+        while (curr != null || !s.isEmpty()) {
+            while (curr != null) {
+                s.push(curr);
+                result.add(curr.val);
+                curr = curr.left;
+            }
+            curr = s.pop();
+            curr = curr.right;
+        }
+        
+        return result;
     }
 }
 ```
