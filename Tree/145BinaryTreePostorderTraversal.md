@@ -22,11 +22,11 @@ class Solution {
                                 } else if (curr.right != null) {
                                         stack.push(curr.right);
                                 }
-                        } else if (curr.left == prev) { // traverse up the tree from the left
+                        } else if (curr.left == prev) {
                                 if (curr.right != null) {
                                         stack.push(curr.right);
                                 }
-                        } else { // traverse up the tree from the right
+                        } else { 
                                 result.add(curr.val);
                                 stack.pop();
                         }
