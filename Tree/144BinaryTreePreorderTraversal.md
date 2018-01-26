@@ -20,6 +20,7 @@ public class Solution {
     }
 }
 ```
+- Iterative
 ```java
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
