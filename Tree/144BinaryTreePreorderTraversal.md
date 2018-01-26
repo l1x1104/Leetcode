@@ -49,16 +49,16 @@ class Solution {
 - Solution 2: Divide & Conquer
 ```java
 public class Solution {
-    public ArrayList<Integer> preorderTraversal(TreeNode root) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
         // null or leaf
         if (root == null) {
             return result;
         }
 
         // Divide
-        ArrayList<Integer> left = preorderTraversal(root.left);
-        ArrayList<Integer> right = preorderTraversal(root.right);
+        List<Integer> left = preorderTraversal(root.left);
+        List<Integer> right = preorderTraversal(root.right);
 
         // Conquer
         result.add(root.val);
