@@ -57,3 +57,52 @@ public class Solution {
 }
 ```
 
+* Solution 2  <br>
+高度比较高的向上移动，直到两个节点相遇。
+```java
+public class Solution {
+    public ParentTreeNode lowestCommonAncestorII(ParentTreeNode root, ParentTreeNode A, ParentTreeNode B) {
+        // write your code here
+        int h1 = getHeight(A);
+        int h2 = getHeight(B);
+        
+        // B is always deeper than A 
+        if (h1 > h2) {  
+            // swapNode
+            ParentTreeNode tmp = A;
+            A = B;
+            B = tmp;
+            
+            // swapHeight
+            int temp = h1;
+            h1 = h2;
+            h2 = temp; 
+        }
+        
+        int dh = h2 - h1;
+        for (int i = 0; i < dh; i++) {
+            B = B.parent;
+        }
+        
+        while (A != null && B != null) {
+            if (A == B) {
+                return A;
+            }
+            A = A.parent;
+            B = B.parent;
+        }
+        
+        return null;
+        
+    }
+    
+    private int getHeight (ParentTreeNode node) {
+        int height = 0;
+        while (node != null) {
+            height ++;
+            node = node.parent;
+        }
+        return height;
+    }   
+}
+```
