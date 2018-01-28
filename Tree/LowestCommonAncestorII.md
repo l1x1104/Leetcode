@@ -1,5 +1,5 @@
 #### Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes. The lowest common ancestor is the node with largest depth which is the ancestor of both nodes. The node has an extra attribute parent which point to the father of itself. The root's parent is null.
-- Example
+* Example
 - For the following binary tree:
 ```
   4
@@ -12,7 +12,8 @@ LCA(5, 6) = 7
 LCA(6, 7) = 7  
 ```
 
-* Solution 1: HashSet (Time: O(h) h is the height of the tree)
+* Solution 1: HashSet (Time: O(h) h is the height of the tree) <br>
+对 p 和 q 向上走，用 hashtable 记录访问过的节点，如果某个节点已经被访问过了，那么返回该节点.
 ```java
 /**
  * Definition of ParentTreeNode:
