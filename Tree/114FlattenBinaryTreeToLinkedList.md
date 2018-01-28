@@ -1,18 +1,27 @@
-* Post Order Traversal
+[Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/)
+* Solution 1: (preOrder) Traverse 
 ```java
-private TreeNode prev = null;
+public class Solution {
+    private TreeNode lastNode = null;
 
-public void flatten(TreeNode root) {
-    if (root == null)
-        return;
-    flatten(root.right);
-    flatten(root.left);
-    root.right = prev;
-    root.left = null;
-    prev = root;
+    public void flatten(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        if (lastNode != null) {
+            lastNode.left = null;
+            lastNode.right = root;
+        }
+
+        lastNode = root;
+        TreeNode right = root.right;
+        flatten(root.left);
+        flatten(right);
+    }
 }
 ```
-* Iterative
+* Solution 2: Non-Recursion
 ```java
 public class Solution {
     public void flatten(TreeNode root) {
