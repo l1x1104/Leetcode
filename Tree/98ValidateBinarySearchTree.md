@@ -1,3 +1,4 @@
+   [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)
    * Solution 1 - Iterative
    ```java
    public boolean isValidBST(TreeNode root) {
@@ -21,7 +22,7 @@
     }
 ```
     
-* Solution 2 - Recursive
+* Solution 2 - Recursive <br>
 recursively iterating over the tree while defining interval <minVal, maxVal> for each node which value must fit in.
 ```java
 public boolean isValidBST(TreeNode root) {
