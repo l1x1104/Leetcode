@@ -1,3 +1,5 @@
+[Path Sum III](https://leetcode.com/problems/path-sum-iii/description/)
+- Solution 1
 Typical recursive DFS. <br>
 Space: O(n) due to recursion. <br>
 Time: O(n^2) in worst case (no branching); O(nlogn) in best case (balanced tree). <br>
@@ -15,6 +17,7 @@ public class Solution {
     }
 }
 ```
+- Solution 2
 ```java
     public int pathSum(TreeNode root, int sum) {
         HashMap<Integer, Integer> preSum = new HashMap();
