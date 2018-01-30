@@ -35,3 +35,4 @@ public boolean isValidBST(TreeNode root, long minVal, long maxVal) {
         return isValidBST(root.left, minVal, root.val) && isValidBST(root.right, root.val, maxVal);
 }
 ```
+[Solution](http://www.jiuzhang.com/solutions/validate-binary-search-tree/)
