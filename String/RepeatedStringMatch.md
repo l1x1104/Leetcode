@@ -31,7 +31,6 @@ class Solution {
         for (int i = 0; i < m; i++) {
             int j = 0;
             while (j < n && A.charAt((i + j) % m) == B.charAt(j)) {
-                System.out.println("i:" + i + ", j:" + j + "");
                 j++;
             }
             
