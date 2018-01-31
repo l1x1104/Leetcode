@@ -1,7 +1,40 @@
-[Bold Words in String] (https://leetcode.com/problems/bold-words-in-string/description/)
+[Bold Words in String](https://leetcode.com/problems/bold-words-in-string/description/)
 
-这道题让我们把字符串在字典中加粗. <br>
-思路是建一个和字典s等长的布尔型数组，如果该字符在单词里面就为true，最后我们就可以根据数组的真假值来添加标签了. <br>
-我们遍历字符串中的每一个字符，把遍历到的每一个单词当作起始位置，我们匹配一遍字典中的所有单词，如果能匹配上，我们就用i + len来更新end，len是当前单词的长度，end表示字典中的单词在字符串s中结束的位置，那么如果i小于end，bold[i]就要赋值为true了
+* Solution 1
+```java
+class Solution {   
+    public String boldWords(String[] words, String S) {
+          if (words == null || words.length == 0) return "";
+          int n = S.length();
+          boolean[] mark = new boolean[n];
+          
+          for (String word: words) {
+               markWords(mark, word, S);
+          }
+          
+          StringBuilder sb = new StringBuilder("");
+          for (int i = 0; i < S.length(); i++) {
+               if (mark[i] && (i == 0 || !mark[i - 1])) {
+                    sb.append("<b>");
+               }
+               sb.append(S.charAt(i));
+               if (marked[i] && (i == S.length() - 1 || !marked[i + 1])) {
+                    sb.append("</b>");
+               }
+          }
+          return sb.toString();
+    }
+    private void markWords(boolean[] mark, String word, String S) {
+          for (int i = 0; i <= S.length() - word.length(); i++) {
+            String substr = S.substring(i, i + word.length());
+            if (substr.equals(word)) {
+                for (int j = i; j < i + word.length(); j++) {
+                    marked[j] = true;
+                }
+            }
+         }
+    }
+ }
+```
 
 
