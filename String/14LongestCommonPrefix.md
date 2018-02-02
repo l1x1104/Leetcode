@@ -1,4 +1,4 @@
-[Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/description/)
+[Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/description/) <br>
 Example: "abcdefgh", "aefghijk", "abcefgh" <br>
 - 关键词：longest, prefix(start from index 0)
 ```java
