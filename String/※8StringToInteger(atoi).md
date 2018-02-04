@@ -1,5 +1,5 @@
-[字符串转为整数](https://leetcode.com/problems/string-to-integer-atoi/description/)
-
+[字符串转为整数](https://leetcode.com/problems/string-to-integer-atoi/description/) <br>
+这题难题是Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.
 ```java
 class Solution {
     public int myAtoi(String str) {
