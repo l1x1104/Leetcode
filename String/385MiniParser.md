@@ -20,13 +20,13 @@ public NestedInteger deserialize(String s) {
                 stack.push(curr);
             }
             curr = new NestedInteger();
-            
+             l = r + 1;
         } else if (ch == ',') {
             if (s.charAt(r - 1) != ']') {
                 String number = s.substring(l, r);
                 curr.add(new NestedInteger(Integer.valueOf(number)));
             }
-            
+             l = r + 1;
         } else if (ch == ']') {
             String number = s.substring(l, r);
             if (!number.isEmpty()) {
@@ -37,9 +37,9 @@ public NestedInteger deserialize(String s) {
                 pop.add(curr);
                 curr = pop;
             }
-            
+             l = r + 1;
         }
-        l = r + 1;
+       
     }
     
     return curr;
