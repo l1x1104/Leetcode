@@ -59,3 +59,29 @@ class Solution {
     }
 }
 ```
+
+- Solution 3: 他山之石
+这里维护了两个变量low和high，其中low表示在有左括号的情况下，将星号当作右括号时左括号的个数(这样做的原因是尽量不多增加右括号的个数)，而high表示将星号当作左括号时左括号的个数。是不是很绕，没办法。那么当high小于0时，说明就算把星号都当作左括号了，还是不够抵消右括号，返回false。而当low大于0时，说明左括号的个数太多了，没有足够多的右括号来抵消，返回false。那么开始遍历字符串，当遇到左括号时，low和high都自增1；当遇到右括号时，只有当low大于0时，low才自减1，保证了low不会小于0，而high直接自减1；当遇到星号时，只有当low大于0时，low才自减1，保证了low不会小于0，而high直接自增1，因为high把星号当作左括号。当此时high小于0，说明右括号太多，返回false。当循环退出后，我们看low是否为0
+```java
+class Solution {   
+    public boolean checkValidString(String s) {
+        int low = 0, high = 0;
+        char[] ch = s.toCharArray();
+        for (Character c : ch) {
+            if (c == '(') {
+                ++low; 
+                ++high;
+            } else if (c == ')') {
+                if (low > 0) --low;
+                --high;
+            } else {
+                if (low > 0) --low;
+                ++high;
+            }
+            
+            if (high < 0) return false;
+        }
+        return low == 0;
+    }     
+}
+```
