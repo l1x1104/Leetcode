@@ -1,8 +1,9 @@
-[Valid Palindrome](https://leetcode.com/problems/valid-palindrome/description/) <br>
-For example, <br>
-"A man, a plan, a canal: Panama" is a palindrome. <br>
-"race a car" is not a palindrome. <br>
-
+[Valid Palindrome](https://leetcode.com/problems/valid-palindrome/description/) 
+```
+For example, 
+"A man, a plan, a canal: Panama" is a palindrome. 
+"race a car" is not a palindrome. 
+```
 ```java
 class Solution {
     public boolean isPalindrome(String s) {
