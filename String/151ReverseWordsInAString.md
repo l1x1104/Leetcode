@@ -1,5 +1,12 @@
 [Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/description/)
-
+```
+Input:
+"   a   b "
+Output:
+"b   a"
+Expected:
+"b a"
+```
 - Solution 1
 ```java
 public class Solution {
