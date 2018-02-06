@@ -24,7 +24,7 @@ class Solution {
 		} else {
 			number = number - value;
 		}
-			prev = value;
+		prev = value;
 	}
 	return number;
     }
