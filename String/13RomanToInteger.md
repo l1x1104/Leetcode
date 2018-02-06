@@ -7,12 +7,12 @@ class Solution {
     public int romanToInt(String s) {
         Map<Character, Integer> map = new HashMap<>();
         map.put('I', 1);
-		    map.put('V', 5);
-		    map.put('X', 10);
-		    map.put('L', 50);
-		    map.put('C', 100);
-		    map.put('D', 500);
-		    map.put('M', 1000);
+	map.put('V', 5);
+	map.put('X', 10);
+	map.put('L', 50);
+	map.put('C', 100);
+	map.put('D', 500);
+	map.put('M', 1000);
         
         // String: XCIV Decimal: 94 = 100-10-1+5
     	  int number = 0, prev = -1;
