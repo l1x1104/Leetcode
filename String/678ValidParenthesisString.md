@@ -34,3 +34,28 @@ class Solution {
     }
 }
 ```
+
+- Solution 2: 递归
+```java
+class Solution {   
+    public boolean checkValidString(String s) {
+        return helper(0, 0, s);
+    } 
+    
+    private boolean helper(int start, int cnt, String str) {
+        if (cnt < 0) return false;
+        for (int i = start; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (c == '(') {
+                cnt ++;
+            } else if (c == ')') {
+                if (cnt <= 0) return false;
+                cnt --;
+            } else {
+                return helper(i + 1, cnt, str) || helper(i + 1, cnt + 1, str) || helper(i + 1, cnt - 1, str);
+            }
+        }       
+        return cnt == 0;
+    }
+}
+```
