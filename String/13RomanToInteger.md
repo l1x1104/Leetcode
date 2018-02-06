@@ -15,18 +15,18 @@ class Solution {
 	map.put('M', 1000);
         
         // String: XCIV Decimal: 94 = 100-10-1+5
-    	  int number = 0, prev = -1;
-		    for (int i = s.length() - 1; i >= 0; i--) {
-			      char ch = s.charAt(i);
-			      int value = map.get(ch);
-			      if (prev == -1 || prev <= value) {
-				      number = number + value;
-			      } else {
-				      number = number - value;
-			      }
-			      prev = value;
-		    }
-		    return number;
+    	int number = 0, prev = -1;
+	for (int i = s.length() - 1; i >= 0; i--) {
+		char ch = s.charAt(i);
+		int value = map.get(ch);
+		if (prev == -1 || prev <= value) {
+			number = number + value;
+		} else {
+			number = number - value;
+		}
+			prev = value;
+	}
+	return number;
     }
 }
 ```
