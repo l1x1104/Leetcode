@@ -32,30 +32,32 @@ public class Solution {
 - Solution 2 in-place
 ```java
 public class Solution {
-    public String reverseWords(String s) {
-        if (s.length() < 1) return s; // empty string
-        int startIdx = 0;
-        char[] str = s.toCharArray();
-        // reverse whole string
-        reverse(str, 0, str.length - 1);
-        // reverse word one by one
-        for (int i = 0; i < str.length; i++) {
-            if (str[i] != ' ') {
-                if (startIdx != 0) str[startIdx++] = ' ';
+        if (s.length() < 1) return s;
+  
+        char[] ch = s.toCharArray();
+        reverse(ch, 0, ch.length - 1);
+        
+        int storedIndex = 0;
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] != ' ') {
+                if (storedIndex != 0) ch[storedIndex++] = ' ';
                 int j = i;
-                while (j < str.length && str[j] != ' ') str[startIdx++] = str[j++];
-                reverse(str, startIdx - (j - i), startIdx - 1); 
+                while (j < ch.length && ch[j] != ' ') {
+                    ch[storedIndex++] = ch[j++];
+                }
+                reverse(ch, storedIndex - (j - i), storedIndex - 1);
                 i = j;
             }
         }
-        return new String(str, 0, startIdx);
+        
+        return new String(ch, 0, storedIndex);
     }
-
-    private void reverse(char[] str, int begin, int end) {
-        for (; begin < end; begin++, end--) {
-            char tmp = str[begin];
-            str[begin] = str[end];
-            str[end] = tmp;
+    
+    private void reverse(char[] ch, int start, int end) {
+        for (; start < end; start ++, end --) {
+            char tmp = ch[end];
+            ch[end] = ch[start];
+            ch[start] = tmp;
         }
     }
 }
