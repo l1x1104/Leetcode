@@ -32,8 +32,9 @@ public class Solution {
 - Solution 2 in-place
 ```java
 public class Solution {
-    if (s.length() < 1) return s;
-  
+    public String reverseWords(String s) {
+        if (s.length() < 1) return s;
+        
         char[] ch = s.toCharArray();
         reverse(ch, 0, ch.length - 1);
         
