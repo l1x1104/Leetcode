@@ -40,6 +40,7 @@ class Solution {
         return set.size();
     }
 }
+```
 
 - Solution 2: DFS
 ```java
