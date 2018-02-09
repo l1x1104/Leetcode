@@ -20,7 +20,7 @@ second half so for the next step the search space would be [6 10].
 
 class Solution {
     public int findDuplicate(int[] nums) {
-        int low = 1, high = nums.length - 1;
+        int low = 0, high = nums.length - 1;
         while (low < high) {
             int mid = low + (high - low) / 2;
             int count = 0;
