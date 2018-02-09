@@ -31,24 +31,34 @@ class Solution {
 Leetcode discussion <br>
 ```java
 class Solution {
-    public int lengthOfLIS(int[] nums) {
-        if (nums.length == 0 || nums == null) return 0;
-        int[] tails = new int[nums.length];
-        int res = 0;
-        for (int num : nums) {
-            int i = 0, j = res;
-            while (i != j) {
-                int mid = (i + j) / 2;
-                if (tails[mid] < num) {
-                    i = mid + 1;
-                }else {
-                    j = mid;
-                }
-            }
-            tails[i] = num;
-            if (i == res) ++res;
+    public int lengthOfLIS(int[] nums) {        
+        if (nums == null || nums.length == 0) {
+            return 0;
         }
-        return res;
+        
+        List<Integer> tails = new LinkedList<>();
+        tails.add(nums[0]);
+        
+        for (Integer num: nums) {
+            if (num < tails.get(0)) {
+                tails.set(0, num);
+            } else if (num > tails.get(tails.size() - 1)) {
+                tails.add(num);
+            } else {
+                int left = 0, right = tails.size() - 1;
+                while (left < right) {
+                    int mid = left + (right - left) / 2;
+                    if (tails.get(mid) < num) {
+                        left = mid + 1;
+                    } else {
+                        right = mid;
+                    }
+                }
+                tails.set(left, num);
+            }
+        }
+        
+        return tails.size();
     }
 }
 ```
