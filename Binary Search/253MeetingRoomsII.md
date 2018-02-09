@@ -32,67 +32,26 @@ public class Solution {
 
 ##### Solution 2 - Priority Queue
 ```java
-public int minMeetingRooms(Interval[] intervals) {
-    if (intervals == null || intervals.length == 0)
-        return 0;
-        
-    // Sort the intervals by start time
-    Arrays.sort(intervals, new Comparator<Interval>() {
-        public int compare(Interval a, Interval b) { 
-            return a.start - b.start; 
-        }
-    });
-    
-    // Use a min heap to track the minimum end time of merged intervals
-    PriorityQueue<Interval> pq = new PriorityQueue<Interval>(intervals.length, new Comparator<Interval>() {
-        public int compare(Interval a, Interval b) { 
-            return a.end - b.end; 
-        }
-    });
-    
-    // start with the first meeting, put it to a meeting room
-    pq.offer(intervals[0]);
-    
-    for (int i = 1; i < intervals.length; i++) {
-        // get the meeting room that finishes earliest
-        Interval interval = pq.poll();
-        
-        if (intervals[i].start >= interval.end) {
-            // if the current meeting starts right after 
-            // there's no need for a new room, merge the interval
-            interval.end = intervals[i].end;
-        } else {
-            // otherwise, this meeting needs a new room
-            pq.offer(intervals[i]);
-        }
-        
-        // don't forget to put the meeting room back
-        pq.offer(interval);
-    }
-    
-    return pq.size();
-}
-```
-
-##### Solution 3 - O(n) 
-If we draw a vertical line in time point, "-1" when meet the begin point, "+1" when meet the end point.
-Traverse and record the maximum number.
-```java
+class Solution {
     public int minMeetingRooms(Interval[] intervals) {
         if (intervals == null || intervals.length == 0) {
             return 0;
         }
         
         Arrays.sort(intervals, new Comparator<Interval>() {
+            @Override
             public int compare(Interval a, Interval b) { 
                 return a.start - b.start; 
             }
         });
+        
         PriorityQueue<Interval> pq = new PriorityQueue<Interval>(intervals.length, new Comparator<Interval>() {
+            @Override
             public int compare(Interval a, Interval b) { 
                 return a.end - b.end; 
             }
         });
+        
         for(Interval i: intervals) {
             pq.offer(i);
         }
@@ -102,6 +61,7 @@ Traverse and record the maximum number.
             Interval curr = pq.peek();
             rooms ++;
             if (intervals[t].start < curr.end) {
+                //rooms ++;
                 max = Math.max(rooms, max);
             } else {
                 rooms --;
@@ -111,7 +71,12 @@ Traverse and record the maximum number.
         
         return max;     
     }
+}
 ```
+
+##### Solution 3 - O(n) 
+If we draw a vertical line in time point, "-1" when meet the begin point, "+1" when meet the end point.
+Traverse and record the maximum number.
 ```java
     public int minMeetingRooms(Interval[] intervals) {
         if(intervals.length == 0) return 0;
