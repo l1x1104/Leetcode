@@ -8,10 +8,14 @@ class Solution {
         }
         
         Arrays.sort(intervals, new Comparator<Interval>() {
-            public int compare(Interval a, Interval b) { return a.start - b.start; }
+            @Override
+            public int compare(Interval a, Interval b) { 
+                return a.start - b.start; 
+            }
         });
         
         PriorityQueue<Interval> pq = new PriorityQueue<Interval>(intervals.length, new Comparator<Interval>() {
+            @Override
             public int compare(Interval a, Interval b) { 
                 return a.end - b.end; 
             }
@@ -26,7 +30,6 @@ class Solution {
             Interval curr = pq.peek();
             rooms ++;
             if (intervals[t].start < curr.end) {
-                //rooms ++;
                 max = Math.max(rooms, max);
             } else {
                 rooms --;
