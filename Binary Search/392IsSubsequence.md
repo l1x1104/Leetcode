@@ -58,10 +58,6 @@ class Solution {
             if (!map.containsKey(ch)) return false;
             else {
                 List<Integer> tmpList = map.get(ch);
-                //int index = Collections.binarySearch(tmpList, lastIndex + 1);
-                //if (index < 0) index = -index - 1;
-                //if (index == tmpList.size()) return false;
-                //lastIndex = tmpList.get(index); 
                 int index = binarySearch(tmpList, lastIndex + 1);
                 if (index == -1) return false;
                 lastIndex = tmpList.get(index);
