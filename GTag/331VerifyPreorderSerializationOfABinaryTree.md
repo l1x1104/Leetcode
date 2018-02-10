@@ -17,8 +17,7 @@ class Solution {
                 }
                 stack.pop();
             }
-            
-             stack.push(ch[i]);
+            stack.push(ch[i]);
         }
         
         return stack.size() == 1 && stack.peek().equals("#");
