@@ -1,23 +1,7 @@
-/***
-Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+[有序矩阵中第K小的元素](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/description/)
 
-Note that it is the kth smallest element in the sorted order, not the kth distinct element.
-
-Example:
-
-matrix = [
-   [ 1,  5,  9],
-   [10, 11, 13],
-   [12, 13, 15]
-],
-k = 8,
-
-return 13.
-Note: 
-You may assume k is always valid, 1 ≤ k ≤ n^2.
-***/
-
-#1 Binary Search
+- Solution 1: BS
+```java
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
         int n = matrix.length;
@@ -46,10 +30,12 @@ class Solution {
         return sum;
     }                                                 
  }
+ ```
  这算法有个问题：极端情况：k == 1,
               假如第一个和最后数相差非常大，每次mid值都很大，逼近第一个数非常慢，worse case复杂度O(n^2). 不如暴力解O(n).
  
- #2 Priority Queue 
+- Solution 2: Priority Queue
+```java
  class Solution {
     public int kthSmallest(int[][] matrix, int k) {
         int n = matrix.length;
@@ -77,3 +63,4 @@ class Solution {
     }                                                
  }
  
+```
