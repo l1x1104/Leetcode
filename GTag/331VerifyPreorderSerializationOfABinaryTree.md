@@ -9,8 +9,7 @@ class Solution {
         }
         
         Stack<String> stack = new Stack<>();
-        for (int i = 0; i < ch.length; i++) {
-            
+        for (int i = 0; i < ch.length; i++) { 
             while (ch[i].equals("#") && !stack.isEmpty() && stack.peek().equals("#")) {
                 stack.pop();
                 if (stack.isEmpty()) {
