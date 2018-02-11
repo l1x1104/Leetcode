@@ -1,5 +1,5 @@
-[找全排列](https://leetcode.com/problems/find-permutation/description/)
-
+[找全排列](https://leetcode.com/problems/find-permutation/description/) <br>
+通过观察，我们需要记录 D 的起始位置 i，还有 D 的连续个数 k，那么我们只需要在数组中倒置 [i, i+k] 之间的数字即可
 ```java
 class Solution {
     public int[] findPermutation(String s) {
