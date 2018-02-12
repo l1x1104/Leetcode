@@ -3,20 +3,19 @@
 ```java
 class Solution {
     public String findContestMatch(int n) {
-        List<String> numbers = new ArrayList<>();
-        for (int i = 1; i <= n; i++) {
-            numbers.add(Integer.toString(i));
+        String[] result = new String[n];
+        for (int i = 0; i < n; i++) {
+            result[i] = Integer.toString(i + 1);
         }
         
         while (n > 1) {
             for (int i = 0; i < n / 2; i++) {
-                String str = "(" + numbers.get(i) + "," + numbers.get(n - i - 1) + ")";
-                numbers.set(i, str);
+                result[i] = "(" + result[i] + "," + result[n - i - 1] + ")";
             }
             n /= 2;
         }
         
-        return numbers.get(0);
+        return result[0];
     }
 }
 ```
