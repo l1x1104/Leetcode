@@ -1,6 +1,6 @@
 [生命游戏](https://leetcode.com/problems/game-of-life/description/)
 
-in-place <br>
+in-place 
 状态 0： 死细胞转为死细胞 <br>   00
 状态 1： 活细胞转为活细胞 <br>   11
 状态 2： 活细胞转为死细胞 <br>   10 
