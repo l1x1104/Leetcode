@@ -44,9 +44,7 @@ class Solution {
             }
             
             for (int j = 0; j < n; j++) {
-                if (nodes[j] != null && nodes[j].size() == 1) {
-                    newLeaves.add(j);
-                } else if (nodes[j] != null && nodes[j].size() == 0) {
+                if (nodes[j] != null && (nodes[j].size() == 1 || nodes[j].size() == 0)) {
                     newLeaves.add(j);
                 }
             }
