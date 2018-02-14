@@ -1,4 +1,4 @@
-[对角遍历](https://leetcode.com/problems/diagonal-traverse/discuss/97712/Concise-Java-Solution)
+[对角线遍历](https://leetcode.com/problems/diagonal-traverse/discuss/97712/Concise-Java-Solution)
 
 ```java
 public class Solution {
