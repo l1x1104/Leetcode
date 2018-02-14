@@ -1,10 +1,11 @@
 [生命游戏](https://leetcode.com/problems/game-of-life/description/)
 
 in-place <br>
-状态 0： 死细胞转为死细胞 <br>
-状态 1： 活细胞转为活细胞 <br>
-状态 2： 活细胞转为死细胞 <br>
-状态 3： 死细胞转为活细胞 <br>
+状态 0： 死细胞转为死细胞 <br>   00
+状态 1： 活细胞转为活细胞 <br>   11
+状态 2： 活细胞转为死细胞 <br>   10 
+状态 3： 死细胞转为活细胞 <br>   01
+
 ```java
 class Solution {
     public void gameOfLife(int[][] board) {
@@ -28,6 +29,7 @@ class Solution {
                 }
             }
         }
+        
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 board[i][j] %= 2;
