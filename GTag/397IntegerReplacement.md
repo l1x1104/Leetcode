@@ -1,4 +1,4 @@
-[整数替换]（https://leetcode.com/problems/integer-replacement/description/）
+[整数替换](https://leetcode.com/problems/integer-replacement/description/）
 
 ```java
 class Solution {
@@ -15,7 +15,7 @@ class Solution {
             return ;
         }
         if (n == 1) {
-            result = Math.min(len, result);
+            result = Math.min(len, result);(
             return ;
         }
         if (n % 2 == 0) {
