@@ -1,4 +1,4 @@
-[解码字符串](https://leetcode.com/problems/decode-string/discuss/)
+[解码字符串](https://leetcode.com/problems/decode-string/)
 
 ```java
 class Solution {
