@@ -1,4 +1,4 @@
-[整数替换](https://leetcode.com/problems/integer-replacement/description/）
+[整数替换](https://leetcode.com/problems/integer-replacement/description/)
 
 ```java
 class Solution {
