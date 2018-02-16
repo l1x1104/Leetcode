@@ -21,4 +21,6 @@ class Solution {
 }
 ```
 
-- FollowUp : Time O(n) Space O(1)
+- FollowUp : Time O(n) Space O(1) <br>
+"Virtual Indexing" - https://leetcode.com/problems/wiggle-sort-ii/discuss/77677/O(n)+O(1)-after-median-Virtual-Indexing
+
