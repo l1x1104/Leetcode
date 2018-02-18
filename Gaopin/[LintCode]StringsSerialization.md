@@ -140,28 +140,25 @@ public class Solution {
         return sb.toString();
     }
     public List<String> decode(String str) {
-        if(str == null){
-            return null;
+        List<String> result = new ArrayList<>();
+        char[] sc = str.toCharArray();
+        String item = "";
+        int i = 0;
+        while (i < str.length()) {
+             if (sc[i] == ':') {
+                  if (sc[i + 1] == ';') {
+                       result.add(item);
+                       item = "";
+                  } else {
+                       item += sc[i + 1];
+                  }
+                   i += 2;
+             } else {
+                  item += sc[i];
+                  i += 1;
+             }
         }
-        List<String> strs = new ArrayList<String>();
-        int idx = 0;
-        StringBuffer sb = new StringBuffer();        
-        while(idx < str.length()){
-            if(str.charAt(idx) != ':'){
-                sb.append(str.charAt(idx));
-                idx++;
-            }
-            else if(str.charAt(idx + 1) == ';'){
-                strs.add(sb.toString());
-                idx += 2;
-                sb = new StringBuffer();
-            }
-            else{
-                sb.append(":");
-                idx += 2;
-            }
-        }
-        return strs;
+        return result;
     }
 }
 ```
