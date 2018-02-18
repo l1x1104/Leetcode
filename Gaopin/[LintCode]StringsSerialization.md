@@ -133,8 +133,13 @@ public class Solution {
         }
         StringBuffer sb = new StringBuffer();
         for(String s : strs){
-            String newStr = s.replaceAll(":", "::");
-            sb.append(newStr);
+            for (char c: s.toCharArray()) {
+                if (c == ':') {
+                     sb.append("::");
+                } else {
+                     sb.append(c);
+                }
+            }
             sb.append(":;");
         }
         return sb.toString();
