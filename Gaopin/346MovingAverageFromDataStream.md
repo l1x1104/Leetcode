@@ -17,7 +17,7 @@ class MovingAverage {
             sum[index] = sum[index - 1] + val;
             int result = sum[index];
             return (double)result/(index ++);
-        }else{
+        } else {
             sum[index % (size + 1)] = sum[(index - 1) % (size + 1)] + val;
             int result = sum[index % (size + 1)] - sum[(index - size)%(size + 1)];
             index ++;
