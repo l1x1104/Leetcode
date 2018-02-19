@@ -55,6 +55,7 @@ class Solution {
                 }
             } else {
                 int tmp = max;
+                int tmp_max = idxMax;
                 if (min * a[i] > a[i]) {
                     idxMax = idxMin;
                     max = min * a[i];
@@ -63,13 +64,14 @@ class Solution {
                     max = a[i];
                 }
                 if (tmp * a[i] > a[i]) {
-                    idxMin = idxMax;
+                    idxMin = i;
                     min = a[i];
                 } else {
-                    idxMin = i;
+                    idxMin = tmp_max;
+                    //idxMin = idxMax;
                     min = tmp * a[i];
+                }
             }
-        }
         if (max > ans) {
             index[0] = idxMax;
             index[1] = idxMin;
