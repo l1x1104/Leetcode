@@ -1,5 +1,13 @@
 [负载均衡器]()
 
+```
+Implement a load balancer for web servers. It provide the following functionality:
+
+1. Add a new server to the cluster => add(server_id).
+2. Remove a bad server from the cluster => remove(server_id).
+3. Pick a server in the cluster randomly with equal probability => pick().
+```
+
 ```java
 public class LoadBalancer {
     private HashMap<Integer, Integer> map;
