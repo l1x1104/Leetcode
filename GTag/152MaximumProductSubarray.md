@@ -28,3 +28,56 @@ public int maxProduct(int[] a) {
   return ans;
 }
 ```
+- 返回start, end index的solution: 
+```java
+class Solution {
+    public int maxProduct(int[] a) {
+        if (a == null || a.length == 0) {
+            return 0;
+        }
+        int[] index = new int[2];
+        int ans = a[0], min = ans, max = ans;
+        int idxMax = 0, idxMin = 0;
+  
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] >= 0) {
+                if (a[i] > max * a[i]) {
+                    idxMax = i;
+                    max = a[i];
+                } else {
+                    max = max * a[i];
+                }
+                if (a[i] < min * a[i]) {
+                    idxMin = i;
+                    min = a[i];
+                } else {
+                    min = min * a[i];
+                }
+            } else {
+                int tmp = max;
+                if (min * a[i] > a[i]) {
+                    idxMax = idxMin;
+                    max = min * a[i];
+                } else {
+                    idxMax = i;
+                    max = a[i];
+                }
+                if (tmp * a[i] > a[i]) {
+                    idxMin = idxMax;
+                    min = a[i];
+                } else {
+                    idxMin = i;
+                    min = tmp * a[i];
+            }
+        }
+        if (max > ans) {
+            index[0] = idxMax;
+            index[1] = idxMin;
+        }
+        ans = Math.max(ans, max);
+    }
+    //System.out.println(index[0] + ",  " + index[1]);
+    return ans;
+    }
+}
+```
