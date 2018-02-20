@@ -2,7 +2,7 @@
 
 - [Basic](153FindMinimumInRotatedSortedArray.md)
 - [Subarray](209MinimumSizeSubarraySum.md)
-- [Subsequence](300LongestIncreasingSubsequence)
+- [Subsequence](392IsSubsequence.md)
 - [Search](33SearchInRotatedArray)
 - [Kth](378KthSmallestElementInASortedMatrix)
 - [Kclosest](658FindKClosestElements)
