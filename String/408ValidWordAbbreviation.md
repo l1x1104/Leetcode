@@ -24,22 +24,26 @@ Return false.
 ```java
 class Solution {
     public boolean validWordAbbreviation(String word, String abbr) {
-        int number = 0, i = 0, j = 0;
-        while (i < word.length() && j < abbr.length()) {
-            if (Character.isDigit(abbr.charAt(j))) {
-                number = number * 10 + abbr.charAt(j) - '0';
-                if (number == 0) return false;
-                j++;
-            } else {
+        int i = 0, j = 0;
+        char[] w = word.toCharArray();
+        char[] a = abbr.toCharArray();
+        
+        while (i < w.length && j < a.length) {
+            char c = a[j];
+            if (Character.isDigit(c)) {
+                if (a[j] == '0') return false;
+                int number = 0;
+                while (j < a.length && Character.isDigit(a[j])) {
+                    number = number * 10 + a[j] - '0';
+                    j ++;
+                }
                 i += number;
-                if (i >= word.length() || word.charAt(i) != abbr.charAt(j)) return false;
-                number = 0;
-                i++; 
-                j++;
+            } else {
+                if (w[i++] != a[j++]) return false;
             }
         }
-        i += number;
-        return i == word.length() && j == abbr.length();       
+        
+        return i == w.length && j == a.length;
     }
 }
 ```
