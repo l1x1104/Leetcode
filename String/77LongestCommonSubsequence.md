@@ -1,5 +1,7 @@
 [Lintcode最长公共子序列](http://www.lintcode.com/en/problem/longest-common-subsequence/)
 
+http://www.cs.cmu.edu/afs/cs/academic/class/15451-s15/LectureNotes/lecture04.pdf <br>
+
 ```java
 public class Solution {
     public int longestCommonSubsequence(String A, String B) {
