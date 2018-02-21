@@ -1,6 +1,6 @@
 [验证括号字符串](https://leetcode.com/problems/valid-parenthesis-string/description/)
 
-Note: 重点考虑这两栗子 ' *) ' (可以)和 ' *( ' (🚫)
+Note: 重点考虑这两栗子 ' *) ' (可以)和 ' *( ' (🚫不可以)
 - Solution 1: Time O(n) Space O(1)
 ```java
 class Solution {
