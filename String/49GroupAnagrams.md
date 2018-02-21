@@ -1,5 +1,6 @@
 [群组错位词](https://leetcode.com/problems/group-anagrams/description/)
 
+```java
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> result = new ArrayList<>();
@@ -18,3 +19,4 @@ class Solution {
         return result;
     }
 }
+```
