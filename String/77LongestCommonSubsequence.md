@@ -1,7 +1,7 @@
 [Lintcode最长公共子序列](http://www.lintcode.com/en/problem/longest-common-subsequence/)
 
 http://www.cs.cmu.edu/afs/cs/academic/class/15451-s15/LectureNotes/lecture04.pdf <br>
-
+Time: O(mn) - m、n分别是字符串A和B的长度 <br>
 ```java
 public class Solution {
     public int longestCommonSubsequence(String A, String B) {
