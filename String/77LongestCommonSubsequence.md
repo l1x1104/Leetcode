@@ -1,4 +1,4 @@
-[最长公共子序列](http://www.lintcode.com/en/problem/longest-common-subsequence/)
+[Lintcode最长公共子序列](http://www.lintcode.com/en/problem/longest-common-subsequence/)
 
 ```java
 public class Solution {
