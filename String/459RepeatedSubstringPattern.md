@@ -5,8 +5,7 @@ Thinking path: 1. What is the substring? <br>
 
 ```java
 class Solution {
-    public boolean repeatedSubstringPattern(String s) {
-        
+    public boolean repeatedSubstringPattern(String s) { 
         int n = s.length();
         
         for (int i = n / 2; i > 0; i--) {
@@ -19,6 +18,7 @@ class Solution {
                 if (sb.toString().equals(s)) return true; //这里一定要有sb.toString(), stringbuilder append返回值是object
             }
         }
+        
         return false;
     }
 }
